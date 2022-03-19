@@ -1,0 +1,14 @@
+{
+	"short_name":	"Distance Goals",
+	"name":			"Distance Goals",
+	"icons": [
+		{
+			"src":		"/assets/favicon/apple-touch-icon.png",
+			"sizes":	"180x180",
+			"type":		"image/png"
+		}
+	],
+	"start_url":	"/index.html",
+	"display":		"standalone",
+	"orientation":	"portrait"
+}

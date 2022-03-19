@@ -1,0 +1,94 @@
+/* ---------------------------------- GLOBAL STYLES ---------------------------------- */
+body { padding-top: 4.5rem; background-image: url("../assets/bkgd-texture.png"); }
+.goals-container { margin-top: 1.5em; }
+.col { margin-bottom: 1.5em; }
+span.form-required { color: red; }
+footer p { text-align: center; font-size: 0.75em; color: #6c757d; }
+
+/* ---------------------------------- NAVBAR STYLES ---------------------------------- */
+.navbar#primary-nav { background-color: #1C2A48!important; }
+.navbar#secondary-nav { padding: 0; top: -25px; background-color: #c0c8cd!important; }
+.navbar#primary-nav>.container-fluid { justify-content: space-between; }
+.navbar#secondary-nav>.container-fluid { justify-content: center; }
+.navbar-brand { font-size: 1.1rem; position: relative; top: 0.1em; }
+.navbar h1 { margin: 0; font-size: 1rem; }
+.navbar-brand img.logo { max-height: 1.5em; max-width: 1.5em; position: relative; bottom: 0.1em; }
+.navbar .nav-buttons button { color: white; background-color: #0099cc; border-color: #0099cc; }
+.navbar .nav-buttons button:focus, .navbar .nav-buttons button:hover { background-color: #33b5e5; border-color: #33b5e5; }
+.navbar .nav-buttons button:active { background-color: #2bbbad; border-color: #2bbbad; }
+
+/* -------------------------------- COMPONENT STYLES --------------------------------- */
+.welcome h4 { font-size: 2em; color: #000060; }
+.welcome img { height: 1.5em; width: 1.5em; position: relative; bottom: 0.1em; left: 0.15em; }
+.welcome button { color: white; background-color: #0099cc; border-color: #0099cc; }
+.welcome button:focus, .welcome button:hover { background-color: #33b5e5; border-color: #33b5e5; }
+.welcome button:active { background-color: #2bbbad; border-color: #2bbbad; }
+
+button.progress-edit { float: right; background-color: #004d40; border-color: #004d40; margin-left: 0.5em; }
+button.progress-edit:first-of-type { margin-right: -0.6em; }
+button.progress-edit:focus, button.progress-edit:hover { background-color: #00715E; border-color: #00715E; }
+button.progress-edit:active { background-color: #006ABE; border-color: #006ABE; }
+button.progress-edit a { color: white; }
+button.add-button { float: right; position: relative; bottom: 0.4em; background-color: #01579b; border-color: #01579b; }
+button.add-button:focus, button.add-button:hover { background-color: #0277bd; border-color: #0277bd; }
+button.add-button:active { background-color: #00838f; border-color: #00838f; }
+button.add-button i.bi { margin-right: 0.5em; }
+button.data-button { float: right; background-color: #00796b; border-color: #00796b; }
+button.data-button:focus, button.data-button:hover { background-color: #009688; border-color: #009688; }
+button.data-button:active { background-color: #0288d1; border-color: #0288d1; }
+button.data-button:disabled { background-color: #6c757d; border-color: #6c757d; }
+button.data-button i.bi { margin-right: 0.5em; }
+
+.progress-bar { background-color: darkgreen; }
+.progress-bar.progress-time { background-color: darkblue; }
+
+.race-card { border: 1px solid #A1A1A1; }
+.race-name { background-color: #D1D1D1; border-bottom: 1px solid #A1A1A1; }
+.race-name h3 { font-size: 1.25em; margin-bottom: 0; }
+h4.race-company {font-size: 1.15em; margin-bottom: 0; }
+p.race-period { float: right; vertical-align: baseline; margin-bottom: 0; font-size: 0.85em; color: #67788a; }
+.race-progress { margin: 0.75em 0; }
+.race-progress .progress, .milestone-progress .progress { margin: 0; border: 1px #D8DDE1 solid; }
+.progress-header { text-align: right; }
+.progress-header, .progress-display { align-self: center; }
+.race-details { margin-bottom: 1em; }
+.race-details p { margin-bottom: 0; }
+.milestone-progress p { margin-bottom: 0; }
+.milestone-progress .progress-display { width: 100%; }
+.milestone-progress .show-hide { float: right; position: relative; bottom: 0.3em; font-size: 0.75rem; }
+.milestone-progress .table-responsive { clear: both; }
+.milestone-table tr { font-size: 0.85em; }
+.milestone-table td { vertical-align: bottom; }
+.milestone-table td:first-of-type { margin-right: 0.5em; }
+
+.form-check { height: 100%; display: inline-block; padding: 0.5em 1em 0.5em 1.5em; }
+
+#collapse-milestones { position: relative; }
+button.milestones-add-button { position: absolute; right: 0; top: -3em; }
+#milestones-container button { padding: 0; }
+td.milestone-start { text-align: right; padding-left: 1em; }
+
+.sort-radio { display: block; padding: 0 0 0 1.5em; }
+
+/* ---------------------------------- MEDIA QUERIES ---------------------------------- */
+@media (max-width: 400px) {
+	h2 { font-size: calc(1.2rem + .9vw); }
+	h3 { font-size: 1.1em; }
+	.progress-header { font-size: 0.85em; }
+	button.add-button { bottom: 0.6em; }
+}
+@media (min-width: 576px) {
+	.navbar#primary-nav>.container-fluid { max-width: 540px; }
+}
+@media (min-width: 768px) {
+	.navbar#primary-nav>.container-fluid { max-width: 720px; }
+}
+@media (min-width: 992px) {
+	.navbar#primary-nav>.container-fluid { max-width: 960px; }
+}
+@media (min-width: 1200px) {
+	.navbar#primary-nav>.container-fluid { max-width: 1140px; }
+}
+@media (min-width: 1400px) {
+	.navbar#primary-nav>.container-fluid { max-width: 1320px; }
+}

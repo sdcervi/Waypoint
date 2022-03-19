@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A simple distance goal tracker for virtual distance challenges without their own apps">
+	<meta name="author" content="Stephanie Cervi">
+	<title>Edit challenge || Distance Goal Tracker</title>
+
+	<!-- CSS -->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<link href="css/style.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+	
+	<!-- Meta details to launch in full-screen if added as a homescreen app -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="mainfest" href="manifest.json">
+</head>
+	
+<body class="d-flex flex-column h-100">
+	
+<header>	
+	<nav class="navbar navbar-dark fixed-top bg-dark" id="primary-nav"></nav>
+</header>
+	
+<main class="flex-shrink-0">
+<div class="container">
+	
+	<p><a href="./index.html">&larr;&nbsp;Back</a></p>
+	
+	<h2 class="text-center">Edit challenge details</h2>
+	
+	<section class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 col-xxl-6 offset-xxl-3">
+	
+		<div class="mb-3 row">
+			<label for="challenge-name" class="col-form-label">Challenge name:<span class="form-required"> *</span></label>
+			<div><input type="text" class="form-control" name="challenge-name" id="challenge-edit-name" required /></div>
+		</div>
+		<div class="mb-3 row">
+			<label for="challenge-company" class="col-form-label">Company:<span class="form-required"> *</span></label>
+			<div><input type="text" class="form-control" name="challenge-company" id="challenge-edit-company" placeholder="Example: Virtual Running Challenges" required /></div>
+		</div>
+		<div class="mb-3 row">
+			<label for="challenge-distance" class="col-form-label">Distance goal:<span class="form-required"> *</span></label>
+			<div class="col-6"><input type="number" step="any" class="form-control" name="challenge-distance" id="challenge-edit-distance" required /></div>
+			<div class="col-6">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="distance-edit" value="miles" id="editMiles" checked>
+					<label class="form-check-label" for="editMiles">mi</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="distance-edit" value="kilometers" id="editKilometers">
+					<label class="form-check-label" for="editKilometers">km</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<label for="challenge-progress" class="col-form-label">Current progress:<span class="form-required"> *</span></label>
+			<div><input type="number" step="any" class="form-control" name="challenge-progress" id="challenge-edit-progress" /></div>
+		</div>
+		<div class="mb-3 row">
+			<div class="form-check ps-5">
+				<input class="form-check-input" type="checkbox" name="is-complete" id="is-complete">
+				<label class="form-check-label" for="is-complete">I&rsquo;ve completed this challenge</label>
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="challenge-period" class="col-form-label">Time period:</label>
+			<div class="input-group">
+				<input type="number" step="1" class="form-control" name="challenge-period" id="challenge-edit-period" />
+				<select class="form-select" aria-label="Default select example" id="challenge-edit-period-unit">
+					<option selected>Select unit</option>
+					<option value="day">days</option>
+					<option value="month">months</option>
+					<option value="year">years</option>
+				</select>
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="challenge-start" class="col-form-label">Start date:<span class="form-required"> *</span></label>
+			<div><input type="date" class="form-control" name="challenge-start" id="challenge-edit-start" required/></div>
+		</div>
+		<div class="row">
+			<div class="form-check ps-5 mb-3">
+				<input class="form-check-input" type="checkbox" name="has-milestones" id="hasMilestones" data-bs-toggle="collapse" href="#collapse-milestones" role="button" aria-expanded="false" aria-controls="collapseMilestones">
+				<label class="form-check-label" for="hasMilestones">This challenge has milestones</label>
+			</div>
+		</div>
+		<div class="collapse" id="collapse-milestones">
+			<button class="btn btn-outline-primary btn-sm milestones-add-button" type="button" onclick="addMilestone('milestones-edit-container')"><i class="bi bi-plus-lg"></i></button>
+			<div class="mb-3 row" id="milestones-edit-container"></div>
+		</div>
+		<p class="mb-0 mt-4 small float-end"><span class="form-required">* Required</span></p>
+		<a href="./index.html"><button type="button" class="btn btn-secondary mt-3">Cancel</button></a>
+		<button type="button" class="btn btn-primary mt-3" id="edit-challenge-button" onclick="editChallenge()">Submit</button>
+	
+	</section>
+	
+	<!-- About page modal -->
+	<div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="aboutModalLabel">About Distance Goals</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Distance Goals is designed to help you track progress toward goals for virtual or real-world distance challenges. Some challenge hosts have no way to sync with fitness tracking apps, or their own usable tracking system.</p>
+					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Distance Goals does it all for you.</p>
+					<p>Curious how it works? Click the <strong>Demo</strong> button in the top menu to load sample data.</p>
+					<h5>How is my data stored?</h5>
+					<p>All your data is stored on your own device; it never gets uploaded to the internet. You don&rsquo;t need a login, and your data is kept private and secure.</p>
+					<p>Please note that if you change browsers (Chrome, Firefox, etc.) or move to a different device, you won&rsquo;t be able to access your data.  This is why we have an <strong>Import/Export</strong> feature allowing you to transfer your data between devices easily with a few clicks.</p>
+					<h5>Contact us</h5>
+					<p>For general feedback, questions, feature requests, or general comments, please <a href="mailto:contact@stephaniecervi.net?subject=Distance Goal feedback">send us an email</a>.</p>
+					<p>You can also get in touch via GitHub if you prefer.  Please note that a GitHub account is required for anything other than viewing information.</p>
+					<ul>
+						<li><a href="https://github.com/sdcervi/DistanceGoals/commits">View the latest changelog</a></li>
+						<li><a href="https://github.com/sdcervi/DistanceGoals/issues/new?labels=bug">Report a bug</a></li>
+						<li><a href="https://github.com/sdcervi/DistanceGoals/issues/new?labels=feature+request">Request a feature</a></li>
+						<li><a href="https://github.com/sdcervi/DistanceGoals/issues">Browse, add, or comment on issues and in-progress features</a></li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- First visit modal -->
+	<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title welcome" id="welcomeModalLabel"><img src="assets/logo/logo.svg" alt="" class="logo"/>&nbsp;Distance Goals</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body welcome">
+					<h5>Welcome!</h5>
+					<p>Distance Goals is a web app designed to help you track progress toward goals for virtual or real-world distance challenges.</p>
+					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Distance Goals does it all for you.</p>
+					<p>Curious how it works? Click <button class="btn btn-sm btn-primary mx-1">Demo</button> in the top menu to load sample data.</p>
+					<p>Click <button class="btn btn-sm btn-primary mx-1">About</button> in the top menu for more information.</p>
+					<p><strong>Please note that this is still in beta.</strong> There may be bugs or glitches.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Let&rsquo;s get started</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+</main>
+	
+<footer class="footer mt-auto" id="footer"></footer>
+	
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/header-footer.js"></script>
+<script type="text/javascript" src="js/helpers.js"></script>
+<script type="text/javascript" src="js/first-visit.js"></script>
+<script type="text/javascript" src="js/data-handler.js"></script>
+<script type="text/javascript" src="js/edit-challenge.js"></script>
+<script type="text/javascript" src="js/sample-data.js"></script>
+
+</body>
+</html>
