@@ -12,7 +12,7 @@ footer p { text-align: center; font-size: 0.75em; color: #6c757d; }
 .navbar#secondary-nav>.container-fluid { justify-content: center; }
 .navbar-brand { font-size: 1.1rem; position: relative; top: 0.1em; }
 .navbar h1 { margin: 0; font-size: 1rem; }
-.navbar-brand img.logo { max-height: 1.5em; max-width: 1.5em; position: relative; bottom: 0.1em; }
+.navbar-brand img.logo { height: 1.5em; width: 10em; position: relative; bottom: 0.1em; }
 .navbar .nav-buttons button { color: white; background-color: #0099cc; border-color: #0099cc; }
 .navbar .nav-buttons button:focus, .navbar .nav-buttons button:hover { background-color: #33b5e5; border-color: #33b5e5; }
 .navbar .nav-buttons button:active { background-color: #2bbbad; border-color: #2bbbad; }

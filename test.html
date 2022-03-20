@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="A simple distance goal tracker for virtual distance challenges without their own apps">
 	<meta name="author" content="Stephanie Cervi">
-	<title>Distance Goal Tracker</title>
+	<title>Waypoint Distance Tracker</title>
 
 	<!-- CSS -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,11 +25,11 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-7FXX8J9GTX"></script>
 	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-	  gtag('config', 'G-7FXX8J9GTX');
+		gtag('config', 'G-7FXX8J9GTX');
 	</script>
 </head>
 	
@@ -50,7 +50,7 @@
 <main class="flex-shrink-0">
 <div class="container">
 	
-	<button class="btn btn-primary btn-sm m-2 add-button"><i class="bi bi-arrow-down-up"></i>Sort</button>
+	<button class="btn btn-primary btn-sm m-2 add-button" data-bs-toggle="modal" data-bs-target="#sortModal"><i class="bi bi-arrow-down-up"></i>Sort</button>
 	<a href="./add-challenge.html"><button class="btn btn-primary btn-sm m-2 add-button"><i class="bi bi-plus-lg"></i>New</button></a>
 	
 	<h2>Challenges in progress</h2>
@@ -109,6 +109,68 @@
 		</div>
 	</div>
 	
+	<!-- Sort data modal -->
+	<div class="modal fade" id="sortModal" tabindex="-1" aria-labelledby="sortModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="sortModalLabel">Sort challenges</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<label class="col-form-label">Sort challenges by:</label>
+					<div class="col-10">
+						<div class="mb-3">
+							<div class="form-check sort-radio">
+								<input class="form-check-input" type="radio" name="sort-by" value="name-asc" id="name-asc">
+								<label class="form-check-label" for="name-asc"><i class="bi bi-sort-alpha-down"></i> Name <span class="small text-muted">ascending</span></label>
+							</div>
+							<div class="form-check sort-radio">
+								<input class="form-check-input" type="radio" name="sort-by" value="name-desc" id="name-desc">
+								<label class="form-check-label" for="name-desc"><i class="bi bi-sort-alpha-down-alt"></i> Name <span class="small text-muted">descending</span></label>
+							</div>
+						</div>
+						<div class="mb-3">
+							<div class="form-check sort-radio">
+								<input class="form-check-input" type="radio" name="sort-by" value="distance-desc" id="distance-desc">
+								<label class="form-check-label" for="distance-desc"><i class="bi bi-sort-down"></i> Distance goal <span class="small text-muted">descending</span></label>
+							</div>
+							<div class="form-check sort-radio">
+								<input class="form-check-input" type="radio" name="sort-by" value="distance-asc" id="distance-asc">
+								<label class="form-check-label" for="distance-asc"><i class="bi bi-sort-down-alt"></i> Distance goal <span class="small text-muted">ascending</span></label>
+							</div>
+						</div>
+						<div class="mb-3">
+							<div class="form-check sort-radio">
+								<input class="form-check-input" type="radio" name="sort-by" value="progress-desc" id="progress-desc">
+								<label class="form-check-label" for="progress-desc"><i class="bi bi-sort-down"></i> Progress <span class="small text-muted">descending</span></label>
+							</div>
+							<div class="form-check sort-radio">
+								<input class="form-check-input" type="radio" name="sort-by" value="progress-asc" id="progress-asc">
+								<label class="form-check-label" for="progress-asc"><i class="bi bi-sort-down-alt"></i> Progress <span class="small text-muted">ascending</span></label>
+							</div>
+						</div>
+						<div class="mb-3">
+							<div class="form-check sort-radio">
+								<input class="form-check-input" type="radio" name="sort-by" value="calendar-desc" id="calendar-desc">
+								<label class="form-check-label" for="calendar-desc"><i class="bi bi-sort-down"></i> Completion date <span class="small text-muted">soonest first</span></label>
+							</div>
+							<div class="form-check sort-radio">
+								<input class="form-check-input" type="radio" name="sort-by" value="calendar-asc" id="calendar-asc">
+								<label class="form-check-label" for="calendar-asc"><i class="bi bi-sort-down-alt"></i> Completion date <span class="small text-muted">soonest last</span></label>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" id="sort-button" onclick="setSortMethod()" data-bs-dismiss="modal">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- Upload file modal -->
 	<div class="modal fade" id="uploadFileModal" tabindex="-1" aria-labelledby="uploadFileModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -138,24 +200,24 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="aboutModalLabel">About Distance Goals</h4>
+					<h4 class="modal-title" id="aboutModalLabel">About Waypoint</h4>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<p>Distance Goals is designed to help you track progress toward goals for virtual or real-world distance challenges. Some challenge hosts have no way to sync with fitness tracking apps, or their own usable tracking system.</p>
-					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Distance Goals does it all for you.</p>
+					<p>Waypoint is designed to help you track progress toward goals for virtual or real-world distance challenges. Some challenge hosts have no way to sync with fitness tracking apps, or their own usable tracking system.</p>
+					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Waypoint does it all for you.</p>
 					<p>Curious how it works? Click the <strong>Demo</strong> button in the top menu to load sample data.</p>
 					<h5>How is my data stored?</h5>
 					<p>All your data is stored on your own device; it never gets uploaded to the internet. You don&rsquo;t need a login, and your data is kept private and secure.</p>
 					<p>Please note that if you change browsers (Chrome, Firefox, etc.) or move to a different device, you won&rsquo;t be able to access your data.  This is why we have an <strong>Import/Export</strong> feature allowing you to transfer your data between devices easily with a few clicks.</p>
 					<h5>Contact us</h5>
-					<p>For general feedback, questions, feature requests, or general comments, please <a href="mailto:contact@stephaniecervi.net?subject=Distance Goal feedback">send us an email</a>.</p>
+					<p>For general feedback, questions, feature requests, or general comments, please <a href="mailto:contact@stephaniecervi.net?subject=Waypoint feedback">send us an email</a>.</p>
 					<p>You can also get in touch via GitHub if you prefer.  Please note that a GitHub account is required for anything other than viewing information.</p>
 					<ul>
-						<li><a href="https://github.com/sdcervi/DistanceGoals/commits">View the latest changelog</a></li>
-						<li><a href="https://github.com/sdcervi/DistanceGoals/issues/new?labels=bug">Report a bug</a></li>
-						<li><a href="https://github.com/sdcervi/DistanceGoals/issues/new?labels=feature+request">Request a feature</a></li>
-						<li><a href="https://github.com/sdcervi/DistanceGoals/issues">Browse, add, or comment on issues and in-progress features</a></li>
+						<li><a href="https://github.com/sdcervi/Waypoint/commits">View the latest changelog</a></li>
+						<li><a href="https://github.com/sdcervi/Waypoint/issues/new?labels=bug">Report a bug</a></li>
+						<li><a href="https://github.com/sdcervi/Waypoint/issues/new?labels=feature+request">Request a feature</a></li>
+						<li><a href="https://github.com/sdcervi/Waypoint/issues">Browse, add, or comment on issues and in-progress features</a></li>
 					</ul>
 				</div>
 				<div class="modal-footer">
@@ -170,13 +232,13 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title welcome" id="welcomeModalLabel"><img src="assets/logo/logo.svg" alt="" class="logo"/>&nbsp;Distance Goals</h4>
+					<h4 class="modal-title welcome" id="welcomeModalLabel"><img src="assets/logo/logo.svg" alt="" class="logo"/></h4>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body welcome">
 					<h5>Welcome!</h5>
-					<p>Distance Goals is a web app designed to help you track progress toward goals for virtual or real-world distance challenges.</p>
-					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Distance Goals does it all for you.</p>
+					<p>Waypoint is a web app designed to help you track progress toward goals for virtual or real-world distance challenges.</p>
+					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Waypoint does it all for you.</p>
 					<p>Curious how it works? Click <button class="btn btn-sm btn-primary mx-1">Demo</button> in the top menu to load sample data.</p>
 					<p>Click <button class="btn btn-sm btn-primary mx-1">About</button> in the top menu for more information.</p>
 					<p><strong>Please note that this is still in beta.</strong> There may be bugs or glitches.</p>
