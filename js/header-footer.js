@@ -13,7 +13,7 @@ navDiv.innerHTML = navContents;
 
 // Set up footer contents and write them to the page
 const footerDiv = document.getElementById('footer');
-let footerContents = '<hr class="text-muted mx-4"><div class="container"><p>Designed &amp; built by Stephanie Cervi</p>';
+let footerContents = '<hr class="text-muted mx-4"><div class="container"><p>Designed &amp; built by <a href="https://stephaniecervi.net">Stephanie Cervi</a></p>';
 footerContents += '<p>Like my work and want to support me? <a href="https://ko-fi.com/sdcervi" target="_blank">Buy me a coffee</a> or <a href="https://www.etsy.com/listing/1178395889/sport-medal-honeycomb-display-plaque" target="_blank">buy one of my display plaques for your shiny new medals</a>.</p></div>';
 
 footerDiv.innerHTML = footerContents;
