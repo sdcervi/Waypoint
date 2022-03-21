@@ -6,20 +6,21 @@ span.form-required { color: red; }
 footer p { text-align: center; font-size: 0.75em; color: #6c757d; }
 
 /* ---------------------------------- NAVBAR STYLES ---------------------------------- */
-.navbar#primary-nav { background-color: #1C2A48!important; }
-.navbar#secondary-nav { padding: 0; top: -25px; background-color: #c0c8cd!important; }
-.navbar#primary-nav>.container-fluid { justify-content: space-between; }
-.navbar#secondary-nav>.container-fluid { justify-content: center; }
-.navbar-brand { font-size: 1.1rem; position: relative; top: 0.1em; }
-.navbar h1 { margin: 0; font-size: 1rem; }
+.navbar { background-color: #1C2A48!important; }
+.navbar .container-fluid { justify-content: center; position: relative; }
+.navbar button.navbar-toggler { position: absolute; left: 0.4em; top: 0; font-size: 1.5rem; color: white; border: none; padding: 0.1rem; }
+.navbar-brand { font-size: 1.1rem; position: relative; top: 0.1em; margin-right: 0; }
 .navbar-brand img.logo { height: 1.5em; width: 10em; position: relative; bottom: 0.1em; }
-.navbar .nav-buttons button { color: white; background-color: #0099cc; border-color: #0099cc; }
-.navbar .nav-buttons button:focus, .navbar .nav-buttons button:hover { background-color: #33b5e5; border-color: #33b5e5; }
-.navbar .nav-buttons button:active { background-color: #2bbbad; border-color: #2bbbad; }
+.navbar .nav-link { color: white!important; padding: 0.25rem 0; }
+.navbar .nav-link:focus, .navbar .nav-link:hover { color: #33b5e5!important; }
+.navbar .nav-link:active { color: #2bbbad!important; }
+.navbar button.signin { color: white; background-color: #0099cc; border-color: #0099cc; position: absolute; right: 0.75rem; top: -0.15em; }
+.navbar button.signin:focus, .navbar button.signin:hover { background-color: #33b5e5; border-color: #33b5e5; }
+.navbar button.signin:active { background-color: #2bbbad; border-color: #2bbbad; }
 
 /* -------------------------------- COMPONENT STYLES --------------------------------- */
 .welcome h4 { font-size: 2em; color: #000060; }
-.welcome img { height: 1.5em; width: 1.5em; position: relative; bottom: 0.1em; left: 0.15em; }
+.welcome img { width: 175px; height: 26px; position: relative; bottom: 0.1em; left: 0.15em; }
 .welcome button { color: white; background-color: #0099cc; border-color: #0099cc; }
 .welcome button:focus, .welcome button:hover { background-color: #33b5e5; border-color: #33b5e5; }
 .welcome button:active { background-color: #2bbbad; border-color: #2bbbad; }
@@ -33,11 +34,6 @@ button.add-button { float: right; position: relative; bottom: 0.4em; background-
 button.add-button:focus, button.add-button:hover { background-color: #0277bd; border-color: #0277bd; }
 button.add-button:active { background-color: #00838f; border-color: #00838f; }
 button.add-button i.bi { margin-right: 0.5em; }
-button.data-button { float: right; background-color: #00796b; border-color: #00796b; }
-button.data-button:focus, button.data-button:hover { background-color: #009688; border-color: #009688; }
-button.data-button:active { background-color: #0288d1; border-color: #0288d1; }
-button.data-button:disabled { background-color: #6c757d; border-color: #6c757d; }
-button.data-button i.bi { margin-right: 0.5em; }
 
 .progress-bar { background-color: darkgreen; }
 .progress-bar.progress-time { background-color: darkblue; }
@@ -70,6 +66,8 @@ td.milestone-start { text-align: right; padding-left: 1em; }
 
 .sort-radio { display: block; padding: 0 0 0 1.5em; }
 
+img.profile-img { float: right; border-radius: 50%; }
+
 /* ---------------------------------- MEDIA QUERIES ---------------------------------- */
 @media (max-width: 400px) {
 	h2 { font-size: calc(1.2rem + .9vw); }
@@ -85,6 +83,7 @@ td.milestone-start { text-align: right; padding-left: 1em; }
 }
 @media (min-width: 992px) {
 	.navbar#primary-nav>.container-fluid { max-width: 960px; }
+	.navbar button.signin { position: inherit; }
 }
 @media (min-width: 1200px) {
 	.navbar#primary-nav>.container-fluid { max-width: 1140px; }

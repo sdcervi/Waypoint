@@ -1,9 +1,6 @@
 /* Contains functions to process data
 
 CONTENTS:
-	1. Global variables for database and current user
-
-
 	1. Global variable for challenges object, initialized to empty, then filled with localStorage data if it exists
 	2. deleteChallengeModal		Variables and function to delete a challenge
 	3. saveChanges ()			Saves the challenges object into localStorage
@@ -12,150 +9,7 @@ CONTENTS:
 	6. deleteData ()			Deletes all distance tracker user data from localStorage
 */
 
-// Global variables for database and current user
-const db = firebase.firestore();
 
-function getUserData (user) {
-	const userData = db.collection('userData').doc(user.uid);
-	const displayName = user.displayName;
-	const userID = user.uid;
-	userData.onSnapshot((doc) => {
-        if (doc.exists) {
-			return;
-		} else {
-			db.collection('userData').doc(user.uid).set({
-				sort: 'progress-desc',
-				unit: 'mile',
-				completed: 0
-			}).then(() => {
-				return;
-			}).catch((error) => {
-				console.error("Error writing document: ", error);
-			});
-		}
-    });
-}
-
-function logout () {
-	firebase.auth().signOut()
-		.then(function() {
-			location.href = 'index.html';
-		})
-		.catch(function(error) {
-			console.log ('Sign out error');
-		});
-}
-
-firebase.auth().onAuthStateChanged(function(user) {
-	if (user) {
-		document.getElementById('signin-button').style.display = 'none';
-		getUserData(user);
-	} else {
-		document.getElementById('signin-button').style.display = 'inline-block';
-	}
-});
-
-
-/*
-
-
-function saveData () {
-	if (currentUser) {
-		const userData = db.collection('userData').doc(currentUser.uid);
-		const key = document.getElementById('newProperty').value;
-		const value = document.getElementById('newValue').value;
-		userData.update({
-			[key]: value
-		}).then(() => {
-			return;
-		}).catch ((error) => {
-			console.error ('Error updating user data: ', error);
-		});		
-	} else {
-		return;
-	}
-}
-
-
-			const data = doc.data();
-			document.getElementById('user-data').innerHTML = '';
-			for (const property in data) {
-				let userDBData = property + ': ' + data[property] + '<br>';
-				document.getElementById('user-data').insertAdjacentHTML('beforeend', userDBData);
-			};
-
-
-
-
-function updateCals (event) {
-	const db = firebase.firestore();
-	const myFood = db.collection('foods').doc('hills-rx-diet-feline-zd');
-	myFood.update({
-		cal_per_kg: event.target.value
-	});
-}
-*/
-
-/*
-
-How to query multiple documents
-
-const db = firebase.firestore();
-const collectionName = db.collection('collectionName');
-
-Query1: query field
-Operator: logical operator (>, <, ==, etc)
-Value: What you're comparing to
-
-const query = collectionName.where (query1, operator, value)
-query.get().then(products => {
-	products.forEach(doc => {
-		data = doc.data();
-		document.write(`${data.name} at $${data.price}`);
-	});
-});
-
-Use orderBy to return documents in a specific order
-
-Query1: query field
-Method: asc or desc
-const query = collectionName.orderBy (query1, method);
-
-Use .limit(num) to limit to that number of documents, best for large data sets
-
-
-
-
-
-
-For user-uploaded files:
-
-<input type="file" onchange="uploadFile(this.files)">
-
-function uploadFile(files) {
-    const storageRef = firebase.storage().ref();
-    const imgRef = storageRef.child('horse.jpg');
-
-    const file = files.item(0);
-
-    const task = imgRef.put(file)
-
-    // successful upload
-    task.then(snapshot => {
-        const url = snapshot.downloadURL
-		document.querySelector('#imgContainer).setAttribute('src', url);
-    })
-
-    // monitor progress
-    task.on('state_changed', snapshot => {
-        console.log(snapshot)
-
-    })
-}
-	
-*/
-
-/*
 let challenges = {}; // Initialize challenges object to empty
 
 // If localStorage contains a challenges object, copy that data into our challenges object
@@ -240,4 +94,3 @@ function deleteData () {
 	challenges = {}; // Sets challenges object to empty
 	resetPage ();
 }
-*/
