@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A simple distance goal tracker for virtual distance challenges without their own apps">
+	<meta name="author" content="Stephanie Cervi">
+	<title>About || Waypoint Distance Tracker</title>
+
+	<!-- CSS -->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<link href="css/style.css" rel="stylesheet">
+	
+	<style>button.signin{display:none;}</style>
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+	
+	<!-- Meta details to launch in full-screen if added as a homescreen app -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="mainfest" href="manifest.json">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-7FXX8J9GTX"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-7FXX8J9GTX');
+	</script>
+	
+	<!-- FIREBASE -->
+	<!-- update the version number as needed --> 
+	<script defer src="/__/firebase/9.6.8/firebase-app-compat.js"></script> 
+	<!-- include only the Firebase features as you need --> 
+	<script defer src="/__/firebase/9.6.8/firebase-auth-compat.js"></script> 
+	<script defer src="/__/firebase/9.6.8/firebase-database-compat.js"></script> 
+	<script defer src="/__/firebase/9.6.8/firebase-firestore-compat.js"></script> 
+	<script defer src="/__/firebase/9.6.8/firebase-functions-compat.js"></script> 
+	<script defer src="/__/firebase/9.6.8/firebase-messaging-compat.js"></script> 
+	<script defer src="/__/firebase/9.6.8/firebase-storage-compat.js"></script> 
+	<script defer src="/__/firebase/9.6.8/firebase-analytics-compat.js"></script> 
+	<script defer src="/__/firebase/9.6.8/firebase-remote-config-compat.js"></script> 
+	<script defer src="/__/firebase/9.6.8/firebase-performance-compat.js"></script> 
+	<!-- 
+		  initialize the SDK after all desired features are loaded, set useEmulator to false
+		  to avoid connecting the SDK to running emulators.
+		--> 
+	<script defer src="/__/firebase/init.js?useEmulator=true"></script>
+</head>
+	
+<body class="d-flex flex-column h-100">
+	
+<header>	
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" id="primary-nav"></nav>
+</header>
+	
+<main class="flex-shrink-0">
+<div class="container">
+	
+	<h1>About Waypoint</h1>
+	
+	<p>Waypoint is designed to help you track progress toward goals for virtual or real-world distance challenges. Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Waypoint does it all for you.</p>
+	<p>While popular distance challenge hosts such as <a href="https://www.theconqueror.events/">The Conqueror Challenge</a> or <a href="https://adventure.mypacer.com/">Pacer</a> have their own apps that synchronize with fitness tracking systems (Apple, Garmin, Fitbit, etc), not all of them do. Some challenge hosts ask you to submit proof of your distance and time for each challenge via their website, which can be cumbersome and tedious. Some simply ship your medals after registration, and use the honor system. Waypoint uses the honor system too, but in a way that puts ownership back in your hands.</p>
+	<p>Waypoint is intended to simplify this process by giving you a clean, intuitive, simple interface with which to track all of your active challenges. It doesn&rsquo;t require personal data such as a screenshot or GPS coordinates, but most challenge hosts should accept a screenshot of Waypoint as proof a challenge is complete, if needed.</p>
+	
+	<h2>Contact us</h2>
+	<p>For feedback, questions, feature requests, or other comments, please <a href="mailto:contact@stephaniecervi.net?subject=Waypoint feedback">send us an email</a>.</p>
+	<p>You can also get in touch via GitHub if you prefer.  Please note that a GitHub account is required for anything other than viewing information.</p>
+	<ul>
+		<li><a href="https://github.com/sdcervi/Waypoint/commits">View the latest changelog</a></li>
+		<li><a href="https://github.com/sdcervi/Waypoint/issues/new?labels=bug">Report a bug</a></li>
+		<li><a href="https://github.com/sdcervi/Waypoint/issues/new?labels=feature+request">Request a feature</a></li>
+		<li><a href="https://github.com/sdcervi/Waypoint/issues">Browse, add, or comment on issues and in-progress features</a></li>
+	</ul>
+	
+	<h2>The team</h2>
+	
+	<article class="team-bio mt-4">
+		<div class="row">
+			<div class="col col-12 col-sm-3 col-md-2 bio-photo">
+				<img src="https://lh3.googleusercontent.com/a-/AOh14Gg8CDkvO7ysktTQSjTlGU9Mt9ja6wSua9N59gasgA=s200-c" alt="Stephanie Cervi">
+			</div>
+			<div class="col col-12 col-sm-9 col-md-10">
+				<h3>Stephanie Cervi</h3>
+				<p>Stephanie is a graphic and web designer in California. She originally started developing Waypoint for herself as an alternative to poorly designed tracker apps and for challenges that lack tracking entirely.</p>
+			</div>
+		</div>
+	</article>
+	
+
+	
+	
+	
+	
+	
+	
+	
+</div>
+</main>
+	
+<footer class="footer mt-auto" id="footer"></footer>
+	
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/header-footer.js"></script>
+
+</body>
+</html>

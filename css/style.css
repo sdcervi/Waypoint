@@ -93,6 +93,9 @@ button.btn-edit { position: absolute; }
 
 .toast-container { top: 3em; right: 0; }
 
+.team-bio img { border-radius: 10%; max-width: 100px; height: auto; }
+.team-bio .bio-photo, .team-bio h3 { text-align: center; }
+
 /* ---------------------------------- MEDIA QUERIES ---------------------------------- */
 @media (max-width: 400px) {
 	h2 { font-size: calc(1.2rem + .9vw); }
@@ -102,6 +105,7 @@ button.btn-edit { position: absolute; }
 }
 @media (min-width: 576px) {
 	.navbar#primary-nav>.container-fluid { max-width: 540px; }
+	.team-bio h3 { text-align: left; }
 }
 @media (min-width: 768px) {
 	.navbar#primary-nav>.container-fluid { max-width: 720px; }
@@ -111,6 +115,7 @@ button.btn-edit { position: absolute; }
 	.navbar button.signin { position: inherit; }
 	.navbar .nav-link { font-size: 1em; }
 	.navbar .nav-link.active { display: block; padding: 0.25rem 0.5rem; margin: 0; }
+	.team-bio .bio-photo { text-align: right; }
 }
 @media (min-width: 1200px) {
 	.navbar#primary-nav>.container-fluid { max-width: 1140px; }

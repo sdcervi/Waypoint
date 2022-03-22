@@ -1,6 +1,6 @@
 {
-	"short_name":	"Distance Goals",
-	"name":			"Distance Goals",
+	"short_name":	"Waypoint",
+	"name":			"Waypoint",
 	"icons": [
 		{
 			"src":		"/assets/favicon/apple-touch-icon.png",
@@ -8,7 +8,7 @@
 			"type":		"image/png"
 		}
 	],
-	"start_url":	"/index.html",
+	"start_url":	"/dashboard.html",
 	"display":		"standalone",
 	"orientation":	"portrait"
 }
