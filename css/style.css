@@ -1,3 +1,6 @@
+/* -------------------------------------- FONTS -------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;500;600&display=swap');
+
 /* ---------------------------------- GLOBAL STYLES ---------------------------------- */
 body { padding-top: 4.5rem; background-image: url("../assets/bkgd-texture.png"); }
 .goals-container { margin-top: 1.5em; }
@@ -5,11 +8,14 @@ body { padding-top: 4.5rem; background-image: url("../assets/bkgd-texture.png");
 span.form-required { color: red; }
 footer p { text-align: center; font-size: 0.75em; color: #6c757d; }
 
+h1, h2, h3, h4 { font-family: Raleway, sans-serif; font-weight: 300; }
+h1 { text-transform: uppercase; font-weight: 300; font-size: 2rem; }
+
 /* ---------------------------------- NAVBAR STYLES ---------------------------------- */
 .navbar { background-color: #1C2A48!important; }
 .navbar .container-fluid { justify-content: center; position: relative; }
 .navbar button.navbar-toggler { position: absolute; left: 0.4em; top: 0; font-size: 1.5rem; color: white; border: none; padding: 0.1rem; }
-.navbar-brand { font-size: 1.1rem; position: relative; top: 0.1em; margin-right: 0; }
+.navbar-brand { font-size: 1.1rem; position: relative; top: 0.1em; margin-right: 0; padding: 0; }
 .navbar-brand img.logo { height: 1.5em; width: 10em; position: relative; bottom: 0.1em; }
 .navbar .nav-link { color: white!important; padding: 0.25rem 0; }
 .navbar .nav-link:focus, .navbar .nav-link:hover { color: #33b5e5!important; }
@@ -24,6 +30,8 @@ footer p { text-align: center; font-size: 0.75em; color: #6c757d; }
 .welcome button { color: white; background-color: #0099cc; border-color: #0099cc; }
 .welcome button:focus, .welcome button:hover { background-color: #33b5e5; border-color: #33b5e5; }
 .welcome button:active { background-color: #2bbbad; border-color: #2bbbad; }
+
+#signout-button { float: right; }
 
 button.progress-edit { float: right; background-color: #004d40; border-color: #004d40; margin-left: 0.5em; }
 button.progress-edit:first-of-type { margin-right: -0.6em; }
@@ -66,7 +74,18 @@ td.milestone-start { text-align: right; padding-left: 1em; }
 
 .sort-radio { display: block; padding: 0 0 0 1.5em; }
 
-img.profile-img { float: right; border-radius: 50%; }
+button.signin { display: none; }
+
+#profile-img { text-align: center; margin-top: 2em; }
+#profile-img img { border-radius: 10%; max-width: 150px; height: auto; margin-bottom: 1em; }
+#user-name { text-align: center; font-size: 1.6rem; font-weight: 500; }
+#user-details, #user-stats, #user-settings { padding-top: 1.5em; margin-top: 1.5em; border-top: 1px solid lightgray; }
+#user-details h4, #user-stats h4, #user-settings h4 { text-align: center; }
+#user-details .row:first-of-type, #user-stats .row:first-of-type { margin-top: 1em; }
+#user-details .col-6:first-of-type, #user-stats .col-6:first-of-type { text-align: right; }
+img.provider-icon { width: 30px; height: auto; }
+
+.toast-container { top: 3em; right: 0; }
 
 /* ---------------------------------- MEDIA QUERIES ---------------------------------- */
 @media (max-width: 400px) {

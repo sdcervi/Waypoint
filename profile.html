@@ -67,35 +67,18 @@
 <main class="flex-shrink-0">
 <div class="container">
 	
+	<button class="btn btn-sm btn-secondary " onclick="logout()" id="signout-button">Sign out</button>
+	
 	<h1>Profile</h1>
 	
+	<div id="profile-img"></div>
+	
 	<h2 id="user-name"></h2>
-	<div id="user-details"></div>
-	<div id="user-settings"></div>
+	<div id="user-details" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4"></div>
+	<div id="user-stats" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4"></div>
+	<div id="user-settings" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4"></div>
 	
-	<div>
-		<button class="btn btn-secondary" onclick="logout()" id="signout-button">Sign out</button>
-	</div>
-	
-	<!-- First visit modal -->
-	<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title welcome" id="welcomeModalLabel"><img src="assets/logo/logo.svg" alt="" class="logo"/></h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body welcome">
-					<h5>Welcome!</h5>
-					<p>Waypoint is a web app designed to help you track progress toward goals for virtual or real-world distance challenges.</p>
-					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Waypoint does it all for you.</p>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Let&rsquo;s get started</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div id="toast-container" class="toast-container position-fixed p-3"></div>
 	
 </div>
 </main>
