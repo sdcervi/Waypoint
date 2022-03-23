@@ -25,7 +25,7 @@ const uiConfig = {
 	},
 	// Will use popup for IDP Providers sign-in flow instead of the default, redirect.
 	signInFlow: 'popup',
-	signInSuccessUrl: 'profile.html',
+	signInSuccessUrl: './profile.html',
 	signInOptions: [
 		// Leave the lines as is for the providers you want to offer your users.
 		firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -34,7 +34,7 @@ const uiConfig = {
 	// Terms of service url.
 	tosUrl: '<your-tos-url>',
 	// Privacy policy url.
-	privacyPolicyUrl: '<your-privacy-policy-url>'
+	privacyPolicyUrl: './privacy-policy.html'
 };
 
 // The start method will wait until the DOM is loaded.

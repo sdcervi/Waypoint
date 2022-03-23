@@ -11,8 +11,6 @@
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link href="css/style.css" rel="stylesheet">
-	
-	<style>button.signin{display:none;}</style>
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
@@ -33,25 +31,6 @@
 
 		gtag('config', 'G-7FXX8J9GTX');
 	</script>
-	
-	<!-- FIREBASE -->
-	<!-- update the version number as needed --> 
-	<script defer src="/__/firebase/9.6.8/firebase-app-compat.js"></script> 
-	<!-- include only the Firebase features as you need --> 
-	<script defer src="/__/firebase/9.6.8/firebase-auth-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-database-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-firestore-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-functions-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-messaging-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-storage-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-analytics-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-remote-config-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-performance-compat.js"></script> 
-	<!-- 
-		  initialize the SDK after all desired features are loaded, set useEmulator to false
-		  to avoid connecting the SDK to running emulators.
-		--> 
-	<script defer src="/__/firebase/init.js?useEmulator=true"></script>
 </head>
 	
 <body class="d-flex flex-column h-100">
@@ -69,8 +48,9 @@
 	<p>While popular distance challenge hosts such as <a href="https://www.theconqueror.events/">The Conqueror Challenge</a> or <a href="https://adventure.mypacer.com/">Pacer</a> have their own apps that synchronize with fitness tracking systems (Apple, Garmin, Fitbit, etc), not all of them do. Some challenge hosts ask you to submit proof of your distance and time for each challenge via their website, which can be cumbersome and tedious. Some simply ship your medals after registration, and use the honor system. Waypoint uses the honor system too, but in a way that puts ownership back in your hands.</p>
 	<p>Waypoint is intended to simplify this process by giving you a clean, intuitive, simple interface with which to track all of your active challenges. It doesn&rsquo;t require personal data such as a screenshot or GPS coordinates, but most challenge hosts should accept a screenshot of Waypoint as proof a challenge is complete, if needed.</p>
 	
-	<h2>Contact us</h2>
-	<p>For feedback, questions, feature requests, or other comments, please <a href="mailto:contact@stephaniecervi.net?subject=Waypoint feedback">send us an email</a>.</p>
+	<h2 class="mt-5" id="contact">Contact us</h2>
+	
+	<p>For feedback, questions, feature requests, or other comments, please <a href="https://forms.gle/TpWw2abKSn4gVXAAA">fill out this contact form</a>.</p>
 	<p>You can also get in touch via GitHub if you prefer.  Please note that a GitHub account is required for anything other than viewing information.</p>
 	<ul>
 		<li><a href="https://github.com/sdcervi/Waypoint/commits">View the latest changelog</a></li>
@@ -79,27 +59,77 @@
 		<li><a href="https://github.com/sdcervi/Waypoint/issues">Browse, add, or comment on issues and in-progress features</a></li>
 	</ul>
 	
-	<h2>The team</h2>
+	<h2 class="mt-5">Contribute to future development of Waypoint</h2>
+	
+	<p>Waypoint is free to use, and always will be. We don&rsquo;t believe in the &ldquo;freemium&rdquo; business model, where you get a limited feature set for free and the actually useful feature set is locked behind a subscription. We&rsquo;ll also never run ads; you hate &rsquo;em, we hate &rsquo;em.</p>
+	
+	<p>That being said, there are costs to developing and making web apps available, including domain name, hosting, and service fees for the database provider. If you&rsquo;d like to contribute to the future development and maintenance of Waypoint, please consider <a href="https://ko-fi.com/sdcervi" target="_blank">sending a few dollars our way on Ko-Fi</a>, or <a href="https://www.etsy.com/listing/1178395889/sport-medal-honeycomb-display-plaque" target="_blank">buying display plaques for your shiny new medals</a>. Donations are by no means required, but every one is appreciated. Thank you for your support!</p>
+	
+	<h2 class="mt-5">FAQ</h2>
+	
+	<div class="accordion accordion-flush my-4" id="faq-accordion">
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingOne">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+				I found a bug, or something isn&rsquo;t working the way I think it&rsquo;s supposed to. How do I report that?
+				</button>
+			</h2>
+			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#faq-accordion">
+				<div class="accordion-body">Thank you for helping us improve Waypoint. Please let us know by either <a href="https://forms.gle/TpWw2abKSn4gVXAAA">filling out this form</a> or <a href="https://github.com/sdcervi/Waypoint/issues/new?labels=bug">opening an Issue on GitHub</a>.</div>
+			</div>
+		</div>
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingTwo">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+				Do you collect any personal data?
+				</button>
+			</h2>
+			<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#faq-accordion">
+				<div class="accordion-body">
+					<p>We don&rsquo;t collect GPS coordinates, heart rate, location, or any other rich data.</p>
+					<p>If you create your account with an email address and password, that&rsquo;s all the data we have for you. If you use a Single Sign-On service such as Google or Facebook, they provide us with your name, email, and profile picture. We don&rsquo;t receive or look for any other data to link to your account.</p>
+				</div>
+			</div>
+		</div>
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingThree">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+				Can I enter miles or kilometers for a challenge that uses the other unit?
+				</button>
+			</h2>
+			<div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#faq-accordion">
+				<div class="accordion-body">Yes! Distance progress will be converted to the challenge&rsquo;s selected unit. For example, if you walk a 5K and add that distance to a challenge set to miles, your challenge will add 3.1 miles.</div>
+			</div>
+		</div>
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingFour">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+				Can I sync my fitness tracker such as Fitbit, Garmin, Strava...?
+				</button>
+			</h2>
+			<div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#faq-accordion">
+				<div class="accordion-body">
+					<p>Not at this time. Each fitness tracker system uses a different API to provide your data to us, each of which works differently and has different requirements. While this could be a potential feature down the road, it&rsquo;s not within the Waypoint team&rsquo;s capabilities at the moment.</p>
+					<p>Please <a href="https://forms.gle/TpWw2abKSn4gVXAAA">let us know</a> if you want to see fitness tracking sync with Waypoint!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<h2 class="mt-5">The Waypoint team</h2>
 	
 	<article class="team-bio mt-4">
 		<div class="row">
 			<div class="col col-12 col-sm-3 col-md-2 bio-photo">
-				<img src="https://lh3.googleusercontent.com/a-/AOh14Gg8CDkvO7ysktTQSjTlGU9Mt9ja6wSua9N59gasgA=s200-c" alt="Stephanie Cervi">
+				<img src="./assets/team/stephanie.jpeg" alt="">
 			</div>
 			<div class="col col-12 col-sm-9 col-md-10">
 				<h3>Stephanie Cervi</h3>
 				<p>Stephanie is a graphic and web designer in California. She originally started developing Waypoint for herself as an alternative to poorly designed tracker apps and for challenges that lack tracking entirely.</p>
+				<p>Her main motivations for completing distance challenges are to improve her health and manage her chronic illness&rsquo;s symptoms better, and because the finisher medals look cool on her wall. Whatever works, right?</p>
 			</div>
 		</div>
 	</article>
-	
-
-	
-	
-	
-	
-	
-	
 	
 </div>
 </main>

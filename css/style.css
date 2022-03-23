@@ -26,6 +26,8 @@ h1 { text-transform: uppercase; font-weight: 300; font-size: 2rem; }
 .navbar button.signin:active { background-color: #2bbbad; border-color: #2bbbad; }
 
 /* -------------------------------- COMPONENT STYLES --------------------------------- */
+#cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; border-radius: 0; display: none; padding: 0.5em; font-size: 0.9em; }
+
 .welcome h4 { font-size: 2em; color: #000060; }
 .welcome img { width: 175px; height: 26px; position: relative; bottom: 0.1em; left: 0.15em; }
 .welcome button { color: white; background-color: #0099cc; border-color: #0099cc; }

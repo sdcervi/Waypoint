@@ -20,7 +20,8 @@ primaryNav.innerHTML = primaryNavContents;
 // Set up footer contents and write them to the page
 const footerDiv = document.getElementById('footer');
 let footerContents = '<hr class="text-muted mx-4"><div class="container"><p>Designed &amp; built by <a href="https://stephaniecervi.net">Stephanie Cervi</a></p>';
-footerContents += '<p>Like my work and want to support me? <a href="https://ko-fi.com/sdcervi" target="_blank">Buy me a coffee</a> or <a href="https://www.etsy.com/listing/1178395889/sport-medal-honeycomb-display-plaque" target="_blank">buy one of my display plaques for your shiny new medals</a>.</p></div>';
+footerContents += '<p><a href="./about.html#contact">Contact Us</a> <i class="bi bi-dot"></i> <a href="./privacy-policy.html">Privacy Policy</a> <i class="bi bi-dot"></i> <a href="./terms-of-service.html">Terms of Service</a></p></div>';
+footerContents += '<div id="cookie-banner" class="alert alert-dark text-center mb-0" role="alert">This website uses only essential cookies for managing user authentication. We don\'t collect or share your information with any third parties. <button type="button" class="btn btn-primary btn-sm ms-3" onclick="hideCookieBanner()">Accept</button></div>';
 
 footerDiv.innerHTML = footerContents;
 
@@ -29,7 +30,40 @@ const currentPage = document.location.pathname;
 
 let filename = currentPage.substring(currentPage.lastIndexOf('/')+1);
 filename = filename.substring(0, filename.length - 5);
+if (!filename) {
+	filename = 'index';
+}
 let navID = "nav-" + filename;
 
 const navElement = document.getElementById(navID);
-navElement.classList.add('active');
+if (navElement) {
+	navElement.classList.add('active');
+}
+
+/* Javascript to show and hide cookie banner using localstorage */
+/* Shows the Cookie banner */
+function showCookieBanner () {
+	let cookieBanner = document.getElementById('cookie-banner');
+	cookieBanner.style.display = 'block';
+}
+
+/* Hides the Cookie banner and saves the value to localstorage */
+function hideCookieBanner () {
+	localStorage.setItem('waypoint_isCookieAccepted', 'yes');
+	let cookieBanner = document.getElementById('cookie-banner');
+	cookieBanner.style.display = 'none';
+}
+
+/* Checks the localstorage and shows Cookie banner based on it. */
+function initializeCookieBanner () {
+	let isCookieAccepted = localStorage.getItem('waypoint_isCookieAccepted');
+	if(isCookieAccepted === null) {
+		localStorage.setItem("waypoint_isCookieAccepted", "no");
+		showCookieBanner();
+	}
+	if(isCookieAccepted === "no") {
+		showCookieBanner();
+	}
+}
+	
+window.onload = initializeCookieBanner();
