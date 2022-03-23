@@ -60,6 +60,6 @@ function addProgress () {
 		challenge.progress += distance;
 	}
 	
-	// Reset page contents, regenerate challenge cards, and save the updated data to localStorage
-	resetPage();
+	// Save the updated data
+	saveChanges ();
 }

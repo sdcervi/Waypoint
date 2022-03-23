@@ -1,12 +1,18 @@
-/* Contains functions to edit a challenge's details
+/* Contains the function that generates the page's content in cards from the challenges object */
+
+/* Contains functions that generate the page's content in cards from the challenges object
 
 CONTENTS:
-	1. 						Get the challenge ID out of the URL query string
-	2. 						Insert all existing data into the page's form for editing
-	3. addMilestone	()		Adds a row for a new milestone when creating a new challenge
-	4. deleteMilestone ()	Deletes a milestone row, by unique ID passed from the row's delete button
+	1. Global variables for database and current user, event listeners
+	2. addMilestone ()		Adds a row for a new milestone when creating a new challenge
+	3. deleteMilestone ()	Deletes a milestone row, by unique ID passed from the row's delete button
+	4. addChallenge ()		Add a new challenge to the challenges object
+	5. getProfileData ()	Fetch the database's profile data for the user and display it
 */
 
+// Global variables for database and challenges
+const db = firebase.firestore();
+let challenges = {}; // Initialize challenges object to empty
 let milestoneCounter = 0; // Counter for number of milestones added, so that they each have a unique ID
 
 // Get the challenge ID out of the URL query string
@@ -15,67 +21,8 @@ const parameters = new Proxy(new URLSearchParams(window.location.search), {
 });
 const challengeID = parameters.challenge_id;
 
-// Insert all existing data into the page's form for editing
-
 // Grab the challenge for easy editing
-const challenge = challenges[challengeID];
-
-// Grab the IDs of each form field
-const editName = document.getElementById('challenge-edit-name');
-const editCompany = document.getElementById('challenge-edit-company');
-const editDistance = document.getElementById('challenge-edit-distance');
-const editDistanceUnits = document.querySelectorAll('input[name="distance-edit"]');
-const editProgress = document.getElementById('challenge-edit-progress');
-const editComplete = document.getElementById('is-complete');
-const editPeriod = document.getElementById('challenge-edit-period');
-const editPeriodUnit = document.getElementById('challenge-edit-period-unit');
-const editStart = document.getElementById('challenge-edit-start');
-const editHasMilestones = document.getElementById('hasMilestones');
-const editMilestones = document.getElementById('milestones-edit-container');
-
-// Generate date string for inputting into form field
-const currentStart = getDateString (challenge.start);
-
-// Pass in all the values
-editName.value = challenge.name.replace(/&amp;/g, '&');
-editCompany.value = challenge.company;
-editDistance.value = challenge.distance;
-for (const unit of editDistanceUnits) { // Set radio button
-	if (unit.value == challenge.unit) {
-		unit.checked = true;
-	} else {
-		unit.checked = false;
-	}
-}
-editProgress.value = parseFloat(challenge.progress.toFixed(2));
-if (challenge.complete) { // Check completed box if challenge is completed
-	editComplete.checked = true;
-}
-editPeriod.value = parseFloat(challenge.period); // Will be empty if no period specified
-editPeriodUnit.value = 'day';
-editStart.value = currentStart;
-
-// Initialize milestones to empty and hasMilestones not checked
-editMilestones.innerHTML = '';
-editHasMilestones.checked = false;
-document.getElementById('collapse-milestones').classList.remove('show');
-
-// If milestones are present in the challenge data, check hasMilestones, show the div, and generate rows for editing the milestones
-if (Object.keys(challenge.milestones).length > 0) {
-	editHasMilestones.checked = true;
-	document.getElementById('collapse-milestones').classList.add('show');
-
-	for (const counter in challenge.milestones) {
-		const milestone = challenge.milestones[counter];
-		// Create new milestone row with unique ID
-		let milestonesContent = '<div class="row mb-3" id="milestone' + milestoneCounter + '">';
-		milestonesContent += '<div class="col-6"><input type="text" class="form-control" name="milestone' + milestoneCounter + '-name" id="milestone' + milestoneCounter + '-name" value="' + milestone.name + '" /></div>';
-		milestonesContent += '<div class="col-5"><input type="number" class="form-control" name="milestone' + milestoneCounter + '-distance" id="milestone' + milestoneCounter + '-distance" value="' + milestone.distance + '" /></div>';
-		milestonesContent += '<div class="col-1"><button class="btn btn-link btn-sm m-1" type="button" onclick="deleteMilestone(\'milestone' + milestoneCounter + '\')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button></div></div>'; // Creates button to delete, with matching unique ID
-		editMilestones.insertAdjacentHTML('beforeend', milestonesContent); // Adds the new row, without overwriting div contents like with innerHTML
-		milestoneCounter++;
-	}
-}
+let challenge;
 
 // Adds a row for a new milestone when creating a new challenge
 function addMilestone (container) {
@@ -198,6 +145,102 @@ function editChallenge () {
 	}
 	challenge.milestones = milestonesArray;
 	
+	console.log (challenge);
 	saveChanges();
-	window.location.href = './index.html';
+}
+
+function getChallengeData () {
+	challenge = challenges[challengeID];
+	
+	// Grab the IDs of each form field
+	const editName = document.getElementById('challenge-edit-name');
+	const editCompany = document.getElementById('challenge-edit-company');
+	const editDistance = document.getElementById('challenge-edit-distance');
+	const editDistanceUnits = document.querySelectorAll('input[name="distance-edit"]');
+	const editProgress = document.getElementById('challenge-edit-progress');
+	const editComplete = document.getElementById('is-complete');
+	const editPeriod = document.getElementById('challenge-edit-period');
+	const editPeriodUnit = document.getElementById('challenge-edit-period-unit');
+	const editStart = document.getElementById('challenge-edit-start');
+	const editHasMilestones = document.getElementById('hasMilestones');
+	const editMilestones = document.getElementById('milestones-edit-container');
+
+	// Generate date string for inputting into form field
+	let currentStart;
+	if (challenge.start) {
+		currentStart = getDateString (challenge.start);
+	} else {
+		currentStart = getDateString (new Date());
+	}
+	
+
+	// Pass in all the values
+	editName.value = challenge.name.replace(/&amp;/g, '&');
+	editCompany.value = challenge.company;
+	editDistance.value = challenge.distance;
+	for (const unit of editDistanceUnits) { // Set radio button
+		if (unit.value == challenge.unit) {
+			unit.checked = true;
+		} else {
+			unit.checked = false;
+		}
+	}
+	editProgress.value = parseFloat(challenge.progress.toFixed(2));
+	if (challenge.complete) { // Check completed box if challenge is completed
+		editComplete.checked = true;
+	}
+	
+	if (challenge.period) {
+		editPeriod.value = parseFloat(challenge.period);
+	}
+	editPeriodUnit.value = 'day';
+	editStart.value = currentStart;
+
+	// Initialize milestones to empty and hasMilestones not checked
+	editMilestones.innerHTML = '';
+	editHasMilestones.checked = false;
+	document.getElementById('collapse-milestones').classList.remove('show');
+
+	// If milestones are present in the challenge data, check hasMilestones, show the div, and generate rows for editing the milestones
+	if (Object.keys(challenge.milestones).length > 0) {
+		editHasMilestones.checked = true;
+		document.getElementById('collapse-milestones').classList.add('show');
+
+		for (const counter in challenge.milestones) {
+			const milestone = challenge.milestones[counter];
+			// Create new milestone row with unique ID
+			let milestonesContent = '<div class="row mb-3" id="milestone' + milestoneCounter + '">';
+			milestonesContent += '<div class="col-6"><input type="text" class="form-control" name="milestone' + milestoneCounter + '-name" id="milestone' + milestoneCounter + '-name" value="' + milestone.name + '" /></div>';
+			milestonesContent += '<div class="col-5"><input type="number" class="form-control" name="milestone' + milestoneCounter + '-distance" id="milestone' + milestoneCounter + '-distance" value="' + milestone.distance + '" /></div>';
+			milestonesContent += '<div class="col-1"><button class="btn btn-link btn-sm m-1" type="button" onclick="deleteMilestone(\'milestone' + milestoneCounter + '\')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button></div></div>'; // Creates button to delete, with matching unique ID
+			editMilestones.insertAdjacentHTML('beforeend', milestonesContent); // Adds the new row, without overwriting div contents like with innerHTML
+			milestoneCounter++;
+		}
+	}
+}
+
+// Fetch the database's profile data for the user and display it
+function getProfileData (user) {
+	// Fetch the user's data
+	const userData = db.collection('userData').doc(user.uid);
+	
+	// Check to see if user has challenges in the database
+	userData.get().then((doc) => {
+		const data = doc.data();
+		// If the user's db data contains a challenges JSON string, copy that data into our challenges object
+		if (data.challenges) {
+			challenges = JSON.parse(data.challenges);
+			getChallengeData ();
+		} else {
+			inProgress.innerHTML = '<p>Add some challenges to get&nbsp;started!</p>';
+			complete.innerHTML = '<p>Looks like you haven&rsquo;t completed any challenges&nbsp;yet.</p>';
+			const exportButton = document.getElementById('exportButton');
+			if (exportButton != null) {
+				exportButton.setAttribute('disabled', true);
+				exportButton.setAttribute('tab-index', -1);
+			}
+		}
+	}).catch((error) => {
+		console.log('Error getting user data: ', error);
+	});
 }

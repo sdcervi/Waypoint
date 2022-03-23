@@ -21,7 +21,7 @@ primaryNav.innerHTML = primaryNavContents;
 const footerDiv = document.getElementById('footer');
 let footerContents = '<hr class="text-muted mx-4"><div class="container"><p>Designed &amp; built by <a href="https://stephaniecervi.net">Stephanie Cervi</a></p>';
 footerContents += '<p><a href="./about.html#contact">Contact Us</a> <i class="bi bi-dot"></i> <a href="./privacy-policy.html">Privacy Policy</a> <i class="bi bi-dot"></i> <a href="./terms-of-service.html">Terms of Service</a></p></div>';
-footerContents += '<div id="cookie-banner" class="alert alert-dark text-center mb-0" role="alert">This website uses only essential cookies for managing user authentication. We don\'t collect or share your information with any third parties. <button type="button" class="btn btn-primary btn-sm ms-3" onclick="hideCookieBanner()">Accept</button></div>';
+footerContents += '<div id="cookie-banner" class="alert alert-dark text-center mb-0 row" role="alert"><div class="col-12 col-sm-10 col-lg-11 mb-2 mb-sm-0">This website uses only essential cookies for managing user authentication. No other data is collected or shared with third parties.</div><div class="col-12 col-sm-2 col-lg-1"><button type="button" class="btn btn-primary btn-sm" onclick="hideCookieBanner()">Accept</button></div></div>';
 
 footerDiv.innerHTML = footerContents;
 
@@ -44,7 +44,7 @@ if (navElement) {
 /* Shows the Cookie banner */
 function showCookieBanner () {
 	let cookieBanner = document.getElementById('cookie-banner');
-	cookieBanner.style.display = 'block';
+	cookieBanner.style.display = 'flex';
 }
 
 /* Hides the Cookie banner and saves the value to localstorage */

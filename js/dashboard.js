@@ -1,31 +1,31 @@
 /* Contains the function that generates the page's content in cards from the challenges object */
-	
-// If the challenges object is empty (length of keys array is 0), add default text instead
-if (Object.keys(challenges).length === 0) {
-	inProgress.innerHTML += '<p>Add some challenges to get&nbsp;started!</p>';
-	const exportButton = document.getElementById('exportButton');
-	if (exportButton != null) {
-		exportButton.setAttribute('disabled', true);
-		exportButton.setAttribute('tab-index', -1);
-	}
-}
 
-// Tests whether there are any completed challenges, with fallback default text
-let anyCompleted = false;
-for (const counter in challenges) {
-	if (challenges[counter].complete != false) {
-		anyCompleted = true;
-	}
-}
-if (anyCompleted == false) {
-	complete.innerHTML += '<p>Looks like you haven&rsquo;t completed any challenges&nbsp;yet.</p>';
-}
+/* Contains functions that generate the page's content in cards from the challenges object
 
-// For all challenges within the challenges container object, generate the challenge's card
-/* for (const counter in challenges) {
-	const challenge = challenges[counter];
-	writeCard (challenge, counter);
-} */
+CONTENTS:
+	1. Global variables for database and current user, event listeners
+	2. writeCard ()			Generates each challenge's card from data stored in localStorage object, and writes it to the page
+	3. writeData ()			Writes the user's data to the page
+	3. getProfileData ()	Fetch the database's profile data for the user and display it
+*/
+
+// Global variables for database and challenges
+const db = firebase.firestore();
+let challenges = {}; // Initialize challenges object to empty
+let sortBy;
+
+// Sort modal and selecting correct radio button when opened
+const sortModal = document.getElementById('sortModal');
+sortModal.addEventListener('show.bs.modal', function (event) {
+	const sortMethods = sortModal.querySelectorAll('input[name="sort-by"]');
+	for (const sortMethod of sortMethods) {
+		if (sortBy == sortMethod.value) {
+			sortMethod.checked = true;
+		} else {
+			sortMethod.checked = false;
+		}
+	}
+});
 
 // Generates each challenge's card from data stored in localStorage object, and writes it to the page
 function writeCard (counter) {
@@ -234,3 +234,264 @@ function writeCard (counter) {
 		complete.innerHTML += cardContent;
 	}
 }
+
+function setSortMethod () {
+	const sortOptions = document.querySelectorAll('input[name="sort-by"]');
+	let userSort;
+	for (const sortOption of sortOptions) { // Get the selected unit from the list of units available
+		if (sortOption.checked) {
+			userSort = sortOption.value;
+			break;
+		}
+	}
+	sortBy = userSort;
+	if (!sortBy) {
+		sortBy = 'progress-desc'; // Set sort by progress to default if no saved value
+	}
+	
+	const user = firebase.auth().currentUser;
+	const userData = db.collection('userData').doc(user.uid);
+	userData.update({
+		sort: sortBy
+	}).then(() => {
+		location.reload();
+	}).catch((error) => {
+		console.error('Error writing document: ', error);
+	});
+}
+
+// Sort the array of challenge IDs according to the corresponding properties, then output the data to screen
+function sortCards (challengesArray) {
+	// Perform the sort
+	const method = sortBy.split("-")[0];
+	challengesArray.sort (function(a, b) {
+		let distanceA = challenges[a].distance;
+		let distanceB = challenges[b].distance;
+		const unitA = challenges[a].unit;
+		const unitB = challenges[b].unit;
+		let endDateA;
+		let endDateB;
+		if (challenges[a].period) {
+			endDateA = new Date (challenges[a].start);
+			endDateA.setDate(endDateA.getDate() + challenges[a].period);
+		}
+		if (challenges[b].period) {
+			endDateB = new Date (challenges[b].start);
+			endDateB.setDate(endDateB.getDate() + challenges[b].period);
+		}
+		switch (sortBy) {
+			case 'progress-desc':
+				if ((challenges[a].progress / challenges[a].distance) > (challenges[b].progress / challenges[b].distance)) { // If a's property comes after b's property
+				return -1;
+				} else if ((challenges[a].progress / challenges[a].distance) < (challenges[b].progress / challenges[b].distance)) { // If b's property comes after a's property
+					return 1;
+				} else { // If a and b's properties are equal
+					if (challenges[a].name > challenges[b].name) {
+						return 1;
+					} else if (challenges[a].name < challenges[b].name) {
+						return -1;
+					}
+				}
+				break;
+				
+			case 'progress-asc':
+				if ((challenges[a].progress / challenges[a].distance) > (challenges[b].progress / challenges[b].distance)) { // If a's property comes after b's property
+					return 1;
+				} else if ((challenges[a].progress / challenges[a].distance) < (challenges[b].progress / challenges[b].distance)) { // If b's property comes after a's property
+					return -1;
+				} else { // If a and b's properties are equal
+					if (challenges[a].name > challenges[b].name) {
+						return 1;
+					} else if (challenges[a].name < challenges[b].name) {
+						return -1;
+					}
+				}
+				break;
+				
+			case 'calendar-desc':
+				if (!endDateA && endDateB) {
+					return 1;
+				} else if (endDateA && !endDateB) {
+					return -1;
+				}
+				if (endDateA > endDateB) { // If a's property comes after b's property
+					return 1;
+				} else if (endDateA < endDateB) { // If b's property comes after a's property
+					return -1;
+				} else { // If a and b's properties are equal
+					if (challenges[a].name > challenges[b].name) {
+						return 1;
+					} else if (challenges[a].name < challenges[b].name) {
+						return -1;
+					}
+				}
+				break;
+				
+			case 'calendar-asc':
+				if (!endDateA && endDateB) {
+					return 1;
+				} else if (endDateA && !endDateB) {
+					return -1;
+				}
+				if (endDateA > endDateB) { // If a's property comes after b's property
+					return -1;
+				} else if (endDateA < endDateB) { // If b's property comes after a's property
+					return 1;
+				} else { // If a and b's properties are equal
+					if (challenges[a].name > challenges[b].name) {
+						return 1;
+					} else if (challenges[a].name < challenges[b].name) {
+						return -1;
+					}
+				}
+				break;
+				
+			case 'name-asc':
+				if (challenges[a][method] > challenges[b][method]) { // If a's property comes after b's property
+					return 1;
+				} else if (challenges[a][method] < challenges[b][method]) { // If b's property comes after a's property
+					return -1;
+				} else { // If a and b's properties are equal
+					if (challenges[a].name > challenges[b].name) {
+						return 1;
+					} else if (challenges[a].name < challenges[b].name) {
+						return -1;
+					}
+				}
+				break;
+				
+			case 'name-desc':
+				if (challenges[a][method] > challenges[b][method]) { // If a's property comes after b's property
+					return -1;
+				} else if (challenges[a][method] < challenges[b][method]) { // If b's property comes after a's property
+					return 1;
+				} else { // If a and b's properties are equal
+					if (challenges[a].name > challenges[b].name) {
+						return 1;
+					} else if (challenges[a].name < challenges[b].name) {
+						return -1;
+					}
+				}
+				break;
+				
+			case 'distance-asc':
+				// Convert km to mi for accurate comparison
+				if (unitA == 'kilometers') {
+					distanceA *= 0.621371;
+				}
+				if (unitB == 'kilometers') {
+					distanceB *= 0.621371;
+				}
+				if (distanceA > distanceB) { // If a's property comes after b's property
+					return 1;
+				} else if (distanceA < distanceB) { // If b's property comes after a's property
+					return -1;
+				} else { // If a and b's properties are equal
+					if (challenges[a].name > challenges[b].name) {
+						return 1;
+					} else if (challenges[a].name < challenges[b].name) {
+						return -1;
+					}
+				}
+				break;
+				
+			case 'distance-desc':
+				// Convert km to mi for accurate comparison
+				if (unitA == 'kilometers') {
+					distanceA *= 0.621371;
+				}
+				if (unitB == 'kilometers') {
+					distanceB *= 0.621371;
+				}
+				if (distanceA > distanceB) { // If a's property comes after b's property
+					return -1;
+				} else if (distanceA < distanceB) { // If b's property comes after a's property
+					return 1;
+				} else { // If a and b's properties are equal
+					if (challenges[a].name > challenges[b].name) {
+						return 1;
+					} else if (challenges[a].name < challenges[b].name) {
+						return -1;
+					}
+				}
+				break;
+				
+			default:
+				alert ('Error in sorting function');
+		}
+	});
+	
+	inProgress.innerHTML = '';
+	complete.innerHTML = '';
+
+	for (const counter in challengesArray) {
+		writeCard (challengesArray[counter]);
+	}
+}
+
+// Writes the user's data to the page
+function writeData (userSort) {
+	// Tests whether there are any completed challenges, with fallback default text
+	let anyCompleted = false;
+	for (const counter in challenges) {
+		if (challenges[counter].complete != false) {
+			anyCompleted = true;
+		}
+	}
+	if (anyCompleted == false) {
+		complete.innerHTML = '<p>Looks like you haven&rsquo;t completed any challenges&nbsp;yet.</p>';
+	}
+	
+	sortBy = userSort;
+
+	// Create challenges array to perform sort upon
+	let challengesArray = [];
+	for (const counter in challenges) {
+		challengesArray.push(counter);
+	}
+	
+	sortCards(challengesArray);
+}
+
+// Fetch the database's profile data for the user and display it
+function getProfileData (user) {
+	// Fetch the user's data
+	const userData = db.collection('userData').doc(user.uid);
+	
+	// Check to see if user has challenges in the database
+	userData.get().then((doc) => {
+		const data = doc.data();
+		// If the user's db data contains a challenges JSON string, copy that data into our challenges object
+		if (data.challenges) {
+			challenges = JSON.parse(data.challenges);
+			writeData(data.sort);
+		} else {
+			inProgress.innerHTML = '<p>Add some challenges to get&nbsp;started!</p>';
+			complete.innerHTML = '<p>Looks like you haven&rsquo;t completed any challenges&nbsp;yet.</p>';
+			const exportButton = document.getElementById('exportButton');
+			if (exportButton != null) {
+				exportButton.setAttribute('disabled', true);
+				exportButton.setAttribute('tab-index', -1);
+			}
+		}
+	}).catch((error) => {
+		console.log('Error getting user data: ', error);
+	});
+}
+
+let deleteChallengeID = '';
+// Deletes a challenge based on ID passed by the button that opens the modal, after confirming deletion via modal
+if (document.getElementById('deleteChallengeModal')) {
+	const deleteChallengeModal = document.getElementById('deleteChallengeModal');
+	deleteChallengeModal.addEventListener('show.bs.modal', function (event) {
+		const button = event.relatedTarget;
+		deleteChallengeID = button.getAttribute('data-bs-challenge');
+		const modalBodyInput = deleteChallengeModal.querySelector('.modal-body #challenge-delete-name');
+		modalBodyInput.value = challenges[deleteChallengeID].name.replace(/&amp;/g, '&');
+	});
+}
+
+function deleteChallenge () {
+	delete challenges[deleteChallengeID];
+	saveChanges ();
+}	

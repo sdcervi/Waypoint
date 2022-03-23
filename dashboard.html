@@ -5,12 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="A simple distance goal tracker for virtual distance challenges without their own apps">
 	<meta name="author" content="Stephanie Cervi">
-	<title>Waypoint Distance Tracker</title>
+	<title>Dashboard || Waypoint Distance Tracker</title>
 
 	<!-- CSS -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link href="css/style.css" rel="stylesheet">
+	
+	<style>button.signin{display:none;}</style>
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
@@ -182,49 +184,24 @@
 		</div>
 	</div>
 	
-	<!-- About page modal -->
-	<div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+	<!-- Comfirm delete modal -->
+	<div class="modal fade" id="deleteChallengeModal" tabindex="-1" aria-labelledby="deleteChallengeModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="aboutModalLabel">About Waypoint</h4>
+					<h4 class="modal-title" id="deleteChallengeModalLabel">Please confirm</h4>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<p>Waypoint is designed to help you track progress toward goals for virtual or real-world distance challenges. Some challenge hosts have no way to sync with fitness tracking apps, or their own usable tracking system.</p>
-					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Waypoint does it all for you.</p>
-					<h5>Contact us</h5>
-					<p>For general feedback, questions, feature requests, or general comments, please <a href="mailto:contact@stephaniecervi.net?subject=Waypoint feedback">send us an email</a>.</p>
-					<p>You can also get in touch via GitHub if you prefer.  Please note that a GitHub account is required for anything other than viewing information.</p>
-					<ul>
-						<li><a href="https://github.com/sdcervi/Waypoint/commits">View the latest changelog</a></li>
-						<li><a href="https://github.com/sdcervi/Waypoint/issues/new?labels=bug">Report a bug</a></li>
-						<li><a href="https://github.com/sdcervi/Waypoint/issues/new?labels=feature+request">Request a feature</a></li>
-						<li><a href="https://github.com/sdcervi/Waypoint/issues">Browse, add, or comment on issues and in-progress features</a></li>
-					</ul>
+					<div class="mb-3 row">
+						<label for="challenge-name" class="col-form-label">Challenge:</label>
+						<div><input type="text" class="form-control col-10" name="challenge-name" id="challenge-delete-name" readonly /></div>
+					</div>
+					<p>Please confirm that you want to delete this challenge.</p>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- First visit modal -->
-	<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title welcome" id="welcomeModalLabel"><img src="assets/logo/logo.svg" alt="" class="logo"/></h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body welcome">
-					<h5>Welcome!</h5>
-					<p>Waypoint is a web app designed to help you track progress toward goals for virtual or real-world distance challenges.</p>
-					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Waypoint does it all for you.</p>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Let&rsquo;s get started</button>
+					<button type="cancel" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-success" data-bs-dismiss="modal" onClick="deleteChallenge()">Delete this challenge</button>
 				</div>
 			</div>
 		</div>
@@ -239,13 +216,10 @@
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/header-footer.js"></script>
-<script type="text/javascript" src="js/helpers.js"></script>
-<script type="text/javascript" src="js/first-visit.js"></script>
-<script defer type="text/javascript" src="js/data-handler.js"></script>
-<script type="text/javascript" src="js/add-progress.js"></script>
-<script type="text/javascript" src="js/display.js"></script>
-<script type="text/javascript" src="js/sort.js"></script>
-<script type="text/javascript" src="js/sample-data.js"></script>
+<script defer type="text/javascript" src="js/helpers.js"></script>
+<script defer type="text/javascript" src="js/dashboard.js"></script>
+<script defer type="text/javascript" src="js/add-progress.js"></script>
+<script defer type="text/javascript" src="js/auth.js"></script>
 
 </body>
 </html>

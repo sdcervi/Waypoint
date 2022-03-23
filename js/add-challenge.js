@@ -1,11 +1,18 @@
-/* Contains functions to add a new challenge
+/* Contains the function that generates the page's content in cards from the challenges object */
+
+/* Contains functions that generate the page's content in cards from the challenges object
 
 CONTENTS:
-	1. addMilestone ()		Adds a row for a new milestone when creating a new challenge
-	2. deleteMilestone ()	Deletes a milestone row, by unique ID passed from the row's delete button
-	3. addChallenge ()		Add a new challenge to the challenges object
+	1. Global variables for database and current user, event listeners
+	2. addMilestone ()		Adds a row for a new milestone when creating a new challenge
+	3. deleteMilestone ()	Deletes a milestone row, by unique ID passed from the row's delete button
+	4. addChallenge ()		Add a new challenge to the challenges object
+	5. getProfileData ()	Fetch the database's profile data for the user and display it
 */
 
+// Global variables for database and challenges
+const db = firebase.firestore();
+let challenges = {}; // Initialize challenges object to empty
 
 // Adds a row for a new milestone when creating a new challenge
 let milestoneCounter = 0; // Counter for number of milestones added, so that they each have a unique ID
@@ -151,7 +158,41 @@ function addChallenge () {
 	}
 	
 	// Verify the challenge was saved correctly, and redirect back to main page
-	if (challenges[challengeID]) {
-		window.location.href = './index.html';
-	}
+	const user = firebase.auth().currentUser;
+	const userData = db.collection('userData').doc(user.uid);
+	userData.get().then((doc) => {
+		const data = doc.data();
+		let testChallenges = JSON.parse(data.challenges);
+		if (testChallenges[challengeID]) {
+			alert ('Challenge added!');
+			window.location.href = './dashboard.html';
+		}
+	}).catch((error) => {
+		console.log('Error getting user data: ', error);
+	});
+}
+
+// Fetch the database's profile data for the user and display it
+function getProfileData (user) {
+	// Fetch the user's data
+	const userData = db.collection('userData').doc(user.uid);
+	
+	// Check to see if user has challenges in the database
+	userData.get().then((doc) => {
+		const data = doc.data();
+		// If the user's db data contains a challenges JSON string, copy that data into our challenges object
+		if (data.challenges) {
+			challenges = JSON.parse(data.challenges);
+		} else {
+			inProgress.innerHTML = '<p>Add some challenges to get&nbsp;started!</p>';
+			complete.innerHTML = '<p>Looks like you haven&rsquo;t completed any challenges&nbsp;yet.</p>';
+			const exportButton = document.getElementById('exportButton');
+			if (exportButton != null) {
+				exportButton.setAttribute('disabled', true);
+				exportButton.setAttribute('tab-index', -1);
+			}
+		}
+	}).catch((error) => {
+		console.log('Error getting user data: ', error);
+	});
 }

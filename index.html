@@ -31,25 +31,6 @@
 
 		gtag('config', 'G-7FXX8J9GTX');
 	</script>
-	
-	<!-- FIREBASE -->
-	<!-- update the version number as needed --> 
-	<script defer src="/__/firebase/9.6.8/firebase-app-compat.js"></script> 
-	<!-- include only the Firebase features as you need --> 
-	<script defer src="/__/firebase/9.6.8/firebase-auth-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-database-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-firestore-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-functions-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-messaging-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-storage-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-analytics-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-remote-config-compat.js"></script> 
-	<script defer src="/__/firebase/9.6.8/firebase-performance-compat.js"></script> 
-	<!-- 
-		  initialize the SDK after all desired features are loaded, set useEmulator to false
-		  to avoid connecting the SDK to running emulators.
-		--> 
-	<script defer src="/__/firebase/init.js?useEmulator=true"></script>
 </head>
 	
 <body class="d-flex flex-column h-100">
@@ -61,174 +42,99 @@
 <main class="flex-shrink-0">
 <div class="container">
 	
-	<button class="btn btn-primary btn-sm my-2 ms-2 add-button" data-bs-toggle="modal" data-bs-target="#sortModal"><i class="bi bi-arrow-down-up"></i>Sort</button>
-	<a href="./add-challenge.html"><button class="btn btn-primary btn-sm m-2 add-button"><i class="bi bi-plus-lg"></i>New</button></a>
-	
-	<h2>In progress</h2>
-	
-	<section class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 goals-container" id="in-progress">
-	
-		<noscript>It looks like you&rsquo;ve disabled JavaScript, or your browser doesn&rsquo;t support it. To see the content for this website, please enable JavaScript.</noscript>
-	
-	</section>
-	
-	<h2>Completed</h2>
-	
-	<section class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 goals-container" id="complete">
+	<section id="welcome">
+		
+		<h1>Welcome to <br><img src="assets/logo/logo.svg" alt="Waypoint"></h1>
+		
+		<p class="mt-4">A simple app for tracking progress toward distance-based exercise&nbsp;goals</p>
+		
+		<h2 class="h3 mt-5">Achieve your goals with visual, intuitive progress&nbsp;tracking</h2>
+		
+		<a href="login.html"><button class="btn btn-primary mt-2">Get started</button></a>
+		
+		<div class="px-4 my-5 text-center border-bottom">
+			<div class="overflow-hidden screenshot-container">
+				<div class="container px-5">
+					<img src="assets/screenshot-mbl.png" class="img-fluid border rounded-3 shadow-lg mb-4 mbl" alt="Screenshot">
+					<img src="assets/screenshot-tab.png" class="img-fluid border rounded-3 shadow-lg mb-4 tab" alt="Screenshot">
+					<img src="assets/screenshot.png" class="img-fluid border rounded-3 shadow-lg mb-4 dsk" alt="Screenshot">
+				</div>
+			</div>
+		</div>
+		
+		<h2 class="pb-2 border-bottom">Features</h2>
+
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 feature-grid">
+
+			<div class="col d-flex align-items-start">
+				<i class="bi bi-table"></i>
+				<div class="feature-text">
+					<h3>Simplified</h3>
+					<p>No more spreadsheets or notebooks&mdash;easily track progress without doing any math</p>
+				</div>
+			</div>
+
+			<div class="col d-flex align-items-start">
+				<i class="bi bi-bicycle"></i>
+				<div class="feature-text">
+					<h3>Track any exercise</h3>
+					<p>Walking, biking, running, swimming, wheeling, kayaking...</p>
+				</div>
+			</div>
+
+			<div class="col d-flex align-items-start">
+				<i class="bi bi-segmented-nav"></i>
+				<div class="feature-text">
+					<h3>Milestones</h3>
+					<p>Stay on top of milestones within a challenge</p>
+				</div>
+			</div>
+
+			<div class="col d-flex align-items-start">
+				<i class="bi bi-calendar-range"></i>
+				<div class="feature-text">
+					<h3>Time remaining</h3>
+					<p>See how much time you have left to complete your challenges</p>
+				</div>
+			</div>
+
+			<div class="col d-flex align-items-start">
+				<i class="bi bi-arrow-left-right"></i>
+				<div class="feature-text">
+					<h3>Switch units</h3>
+					<p>Easily convert and switch between miles and kilometers</p>
+				</div>
+			</div>
+
+			<div class="col d-flex align-items-start">
+				<i class="bi bi-currency-exchange"></i>
+				<div class="feature-text">
+					<h3>Free&mdash;completely</h3>
+					<p>No ads, no subscription, no paywall, no cost</p>
+				</div>
+			</div>
+
+			<div class="col d-flex align-items-start">
+				<i class="bi bi-file-check"></i>
+				<div class="feature-text">
+					<h3>Cross-platform</h3>
+					<p>Works on phones, tablets, and computers</p>
+				</div>
+			</div>
+
+			<div class="col d-flex align-items-start">
+				<i class="bi bi-cloud-check"></i>
+				<div class="feature-text">
+					<h3>Cloud-synced</h3>
+					<p>Move seamlessly between devices without any data loss</p>
+				</div>
+			</div>
+
+		</div>
+		
+		<a href="login.html"><button class="btn btn-primary mb-2">Get started</button></a>
 		
 	</section>
-	
-	<!-- Add progress modal -->
-	<div class="modal fade" id="addProgressModal" tabindex="-1" aria-labelledby="addProgressModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="addProgressModalLabel">Add progress to a challenge</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-
-					<form>
-						<div class="mb-3 row">
-							<label for="challenge-name" class="col-form-label">Challenge:</label>
-							<div><input type="text" class="form-control col-10" name="challenge-name" id="challenge-add-name" readonly /></div>
-						</div>
-						<div class="mb-3 row">
-							<label for="enter-distance" class="col-form-label">Progress to add:</label>
-							<div><input type="number" class="form-control col-10" name="enter-distance-add" id="enter-distance-add" /></div>
-						</div>
-						<div class="row">
-							<label class="col-2 col-form-label">Unit:</label>
-							<div class="col-10">
-								<div class="form-check">
-									<input class="form-check-input" type="radio" name="distance-add" value="miles" id="addMiles" checked>
-									<label class="form-check-label" for="addMiles">miles</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio" name="distance-add" value="kilometers" id="addKilometers">
-									<label class="form-check-label" for="addKilometers">kilometers</label>
-								</div>
-							</div>
-						</div>
-					</form>
-
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" id="add-progress-button" onclick="addProgress()" data-bs-dismiss="modal">Submit</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- Sort data modal -->
-	<div class="modal fade" id="sortModal" tabindex="-1" aria-labelledby="sortModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="sortModalLabel">Sort challenges</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-
-					<label class="col-form-label">Sort challenges by:</label>
-					<div class="col-10">
-						<div class="mb-3">
-							<div class="form-check sort-radio">
-								<input class="form-check-input" type="radio" name="sort-by" value="name-asc" id="name-asc">
-								<label class="form-check-label" for="name-asc"><i class="bi bi-sort-alpha-down"></i> Name <span class="small text-muted">ascending</span></label>
-							</div>
-							<div class="form-check sort-radio">
-								<input class="form-check-input" type="radio" name="sort-by" value="name-desc" id="name-desc">
-								<label class="form-check-label" for="name-desc"><i class="bi bi-sort-alpha-down-alt"></i> Name <span class="small text-muted">descending</span></label>
-							</div>
-						</div>
-						<div class="mb-3">
-							<div class="form-check sort-radio">
-								<input class="form-check-input" type="radio" name="sort-by" value="distance-desc" id="distance-desc">
-								<label class="form-check-label" for="distance-desc"><i class="bi bi-sort-down"></i> Distance goal <span class="small text-muted">descending</span></label>
-							</div>
-							<div class="form-check sort-radio">
-								<input class="form-check-input" type="radio" name="sort-by" value="distance-asc" id="distance-asc">
-								<label class="form-check-label" for="distance-asc"><i class="bi bi-sort-down-alt"></i> Distance goal <span class="small text-muted">ascending</span></label>
-							</div>
-						</div>
-						<div class="mb-3">
-							<div class="form-check sort-radio">
-								<input class="form-check-input" type="radio" name="sort-by" value="progress-desc" id="progress-desc">
-								<label class="form-check-label" for="progress-desc"><i class="bi bi-sort-down"></i> Progress <span class="small text-muted">descending</span></label>
-							</div>
-							<div class="form-check sort-radio">
-								<input class="form-check-input" type="radio" name="sort-by" value="progress-asc" id="progress-asc">
-								<label class="form-check-label" for="progress-asc"><i class="bi bi-sort-down-alt"></i> Progress <span class="small text-muted">ascending</span></label>
-							</div>
-						</div>
-						<div class="mb-3">
-							<div class="form-check sort-radio">
-								<input class="form-check-input" type="radio" name="sort-by" value="calendar-desc" id="calendar-desc">
-								<label class="form-check-label" for="calendar-desc"><i class="bi bi-sort-down"></i> Completion date <span class="small text-muted">soonest first</span></label>
-							</div>
-							<div class="form-check sort-radio">
-								<input class="form-check-input" type="radio" name="sort-by" value="calendar-asc" id="calendar-asc">
-								<label class="form-check-label" for="calendar-asc"><i class="bi bi-sort-down-alt"></i> Completion date <span class="small text-muted">soonest last</span></label>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" id="sort-button" onclick="setSortMethod()" data-bs-dismiss="modal">Submit</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- About page modal -->
-	<div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="aboutModalLabel">About Waypoint</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<p>Waypoint is designed to help you track progress toward goals for virtual or real-world distance challenges. Some challenge hosts have no way to sync with fitness tracking apps, or their own usable tracking system.</p>
-					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Waypoint does it all for you.</p>
-					<h5>Contact us</h5>
-					<p>For general feedback, questions, feature requests, or general comments, please <a href="mailto:contact@stephaniecervi.net?subject=Waypoint feedback">send us an email</a>.</p>
-					<p>You can also get in touch via GitHub if you prefer.  Please note that a GitHub account is required for anything other than viewing information.</p>
-					<ul>
-						<li><a href="https://github.com/sdcervi/Waypoint/commits">View the latest changelog</a></li>
-						<li><a href="https://github.com/sdcervi/Waypoint/issues/new?labels=bug">Report a bug</a></li>
-						<li><a href="https://github.com/sdcervi/Waypoint/issues/new?labels=feature+request">Request a feature</a></li>
-						<li><a href="https://github.com/sdcervi/Waypoint/issues">Browse, add, or comment on issues and in-progress features</a></li>
-					</ul>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- First visit modal -->
-	<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title welcome" id="welcomeModalLabel"><img src="assets/logo/logo.svg" alt="" class="logo"/></h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body welcome">
-					<h5>Welcome!</h5>
-					<p>Waypoint is a web app designed to help you track progress toward goals for virtual or real-world distance challenges.</p>
-					<p>Don&rsquo;t waste time fiddling with spreadsheets or doing math by hand in a notebook; Waypoint does it all for you.</p>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Let&rsquo;s get started</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	
 </div>
 </main>
@@ -239,13 +145,6 @@
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/header-footer.js"></script>
-<script type="text/javascript" src="js/helpers.js"></script>
-<script type="text/javascript" src="js/first-visit.js"></script>
-<script defer type="text/javascript" src="js/data-handler.js"></script>
-<script type="text/javascript" src="js/add-progress.js"></script>
-<script type="text/javascript" src="js/display.js"></script>
-<script type="text/javascript" src="js/sort.js"></script>
-<script type="text/javascript" src="js/sample-data.js"></script>
 
 </body>
 </html>

@@ -26,13 +26,17 @@ h1 { text-transform: uppercase; font-weight: 300; font-size: 2rem; }
 .navbar button.signin:active { background-color: #2bbbad; border-color: #2bbbad; }
 
 /* -------------------------------- COMPONENT STYLES --------------------------------- */
-#cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; border-radius: 0; display: none; padding: 0.5em; font-size: 0.9em; }
+#cookie-banner { position: fixed; bottom: 0; left: .75rem; width: 100%; z-index: 999; border-radius: 0; display: none; padding: 0.5em; font-size: 0.9em; align-items: center; }
 
-.welcome h4 { font-size: 2em; color: #000060; }
-.welcome img { width: 175px; height: 26px; position: relative; bottom: 0.1em; left: 0.15em; }
-.welcome button { color: white; background-color: #0099cc; border-color: #0099cc; }
-.welcome button:focus, .welcome button:hover { background-color: #33b5e5; border-color: #33b5e5; }
-.welcome button:active { background-color: #2bbbad; border-color: #2bbbad; }
+#welcome { text-align: center; }
+#welcome .screenshot-container { max-height: 45vh; }
+#welcome img { width: 100%; max-width: 550px; height: auto; }
+#welcome img.dsk, #welcome img.tab { display: none; }
+#welcome .feature-grid { padding: 2rem 2rem 0 2rem; }
+#welcome .feature-grid .feature-text { text-align: left; }
+#welcome .feature-grid .feature-text h3 { font-size: 1.25rem; margin-bottom: 0.25em; font-weight: bold; }
+#welcome .feature-grid .feature-text p { font-weight: 300; }
+#welcome .feature-grid i { font-size: 1.75rem; margin-right: 0.8rem; color: slategray; position: relative; top: -0.25em; }
 
 #signout-button { float: right; }
 
@@ -51,7 +55,7 @@ button.add-button i.bi { margin-right: 0.5em; }
 
 .race-card { border: 1px solid #A1A1A1; }
 .race-name { background-color: #D1D1D1; border-bottom: 1px solid #A1A1A1; }
-.race-name h3 { font-size: 1.25em; margin-bottom: 0; }
+.race-name h3 { font-size: 1.25em; margin-bottom: 0; margin-top: 0.2em; }
 h4.race-company {font-size: 1.15em; margin-bottom: 0; }
 p.race-period { float: right; vertical-align: baseline; margin-bottom: 0; font-size: 0.85em; color: #67788a; }
 .race-progress { margin: 0.75em 0; }
@@ -108,9 +112,11 @@ button.btn-edit { position: absolute; }
 @media (min-width: 576px) {
 	.navbar#primary-nav>.container-fluid { max-width: 540px; }
 	.team-bio h3 { text-align: left; }
+	#welcome .feature-grid { padding: 2rem 0 0 0; }
 }
 @media (min-width: 768px) {
 	.navbar#primary-nav>.container-fluid { max-width: 720px; }
+	#welcome .container.px-5 { max-width: 450px; }
 }
 @media (min-width: 992px) {
 	.navbar#primary-nav>.container-fluid { max-width: 960px; }
@@ -118,10 +124,16 @@ button.btn-edit { position: absolute; }
 	.navbar .nav-link { font-size: 1em; }
 	.navbar .nav-link.active { display: block; padding: 0.25rem 0.5rem; margin: 0; }
 	.team-bio .bio-photo { text-align: right; }
+	#welcome img.mbl { display: none; }
+	#welcome img.tab { display: inline; }
+	#welcome .container.px-5 { max-width: inherit; }
 }
 @media (min-width: 1200px) {
 	.navbar#primary-nav>.container-fluid { max-width: 1140px; }
 }
 @media (min-width: 1400px) {
 	.navbar#primary-nav>.container-fluid { max-width: 1320px; }
+	#welcome .screenshot-container { max-height: 30vh; }
+	#welcome img.tab { display: none; }
+	#welcome img.dsk { display: inline; }
 }
