@@ -43,7 +43,7 @@ function writeCard (counter) {
 		const today = new Date ();
 		const startDate = new Date (challenge.start);
 		let endDate = new Date (challenge.start);
-		endDate.setDate(endDate.getDate() + challenge.period);
+		endDate.setDate(endDate.getDate() + (challenge.period - 1));
 		let timeSoFar = getDuration(startDate.getTime(), today.getTime()); // Get difference in days between start time and today
 
 		let progress = Math.floor((challenge.progress / challenge.distance) * 100); // Calculate progress toward goal in percentage and round down

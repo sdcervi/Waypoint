@@ -120,7 +120,7 @@ function addChallenge () {
 			// Get distance of milestone, validated as a number
 			let milestoneDistance;
 			if (parseFloat(document.getElementById(milestoneID + '-distance').value) > 0) {
-				if (parseFloat(document.getElementById(milestoneID + '-distance').value) < distance) {
+				if (parseFloat(document.getElementById(milestoneID + '-distance').value) <= distance) {
 					milestoneDistance = parseFloat(document.getElementById(milestoneID + '-distance').value); // Convert to number; will discard any non-numeric values
 				} else {
 					alert ('Error: milestone distance exceeds total challenge distance.');

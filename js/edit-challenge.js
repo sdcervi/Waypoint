@@ -97,11 +97,11 @@ function editChallenge () {
 		const startDate = new Date (start.split('-'));
 		let endDate = new Date (start.split('-'));
 		if (periodUnit == 'day') {
-			endDate.setDate(endDate.getDate() + period + 1); // To correct off-by-one error
+			endDate.setDate(endDate.getDate() + period);
 		} else if (periodUnit == 'month') {
 			endDate.setMonth(endDate.getMonth() + period);
 		} else if (periodUnit == 'year') {
-			endDate.setYear(endDate.getFullYear() + period);
+			endDate.setYear(endDate.getFullYear() + period); // To correct off-by-one error
 		} else {
 			alert ('Error with date format entry');
 			return;
@@ -145,7 +145,6 @@ function editChallenge () {
 	}
 	challenge.milestones = milestonesArray;
 	
-	console.log (challenge);
 	saveChanges();
 }
 
