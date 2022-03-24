@@ -62,6 +62,7 @@ p.race-period { float: right; vertical-align: baseline; margin-bottom: 0; font-s
 .race-progress .progress, .milestone-progress .progress { margin: 0; border: 1px #D8DDE1 solid; }
 .progress-header { text-align: right; }
 .progress-header, .progress-display { align-self: center; }
+.per-day { font-size: 0.85em; color: #67788a; text-align: center; margin-bottom: 1em; }
 .race-details { margin-bottom: 1em; }
 .race-details p { margin-bottom: 0; }
 .milestone-progress p { margin-bottom: 0; }

@@ -113,6 +113,12 @@ function writeCard (counter) {
 			cardContent += '<div class="progress-bar progress-time" role="progressbar" style="width: ' + (timeSoFar / challenge.period) * 100 + '%;" aria-valuenow="' + (timeSoFar / challenge.period) * 100 + '" aria-valuemin="0" aria-valuemax="100"></div>';
 		}
 		cardContent += '</div></div></div></div>';
+		
+		// If the challenge has a period specified, calculate how far to go each day to meet the goal
+		if (challenge.period) {
+			const perDay = (challenge.distance - challenge.progress) / (challenge.period - timeSoFar);
+			cardContent += '<div class="per-day">Move ' + parseFloat(perDay.toFixed(2)) + ' ' + challenge.unit + ' per day to meet your goal!</div>';
+		}
 
 		// Generate the challenge's details
 		cardContent += '<div class="race-details"><p><strong>Goal:</strong> ' + challenge.distance + " " + challenge.unit + '</p><p><strong>Progress:</strong> ' + parseFloat(challenge.progress.toFixed(2)) + " " + challenge.unit + '</p></div>';
