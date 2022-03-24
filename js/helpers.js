@@ -16,11 +16,20 @@ const complete = document.getElementById('complete');
 // Saves changes to database and reloads page
 function saveChanges () {
 	const user = firebase.auth().currentUser;
-	
+	let activeChallenges = Object.keys(challenges).length;
+	let completedChallenges = 0;
+	for (const counter in challenges) {
+		const challenge = challenges[counter];
+		if (challenge.complete) {
+			completedChallenges++;
+		}
+	}
 	if (user) {
 		const userData = db.collection('userData').doc(user.uid);
 		userData.update({
-			challenges: JSON.stringify(challenges)
+			challenges: JSON.stringify(challenges),
+			completed: completedChallenges,
+			total_challenges: activeChallenges
 		}).then(() => {
 			location.href = './dashboard.html';
 		}).catch ((error) => {

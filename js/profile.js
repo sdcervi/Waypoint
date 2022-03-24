@@ -56,7 +56,7 @@ function getProfileData (user) {
 		const sort = data.sort;
 		
 		let statsContent = `<h4>Statistics</h4>`;
-		statsContent += `<div class="row"><div class="col-6"><strong>Active challenges</strong></p></div><div class="col-6"><p>${data.total_challenges - data.completed}</p></div></div>`;
+		statsContent += `<div class="row"><div class="col-6"><strong>Challenges in progress</strong></p></div><div class="col-6"><p>${data.total_challenges - data.completed}</p></div></div>`;
 		statsContent += `<div class="row"><div class="col-6"><strong>Challenges completed</strong></p></div><div class="col-6"><p>${data.completed}</p></div></div>`;
 		statsContent += `<div class="row"><div class="col-6"><strong>Distance tracked</strong></p></div><div class="col-6"><p>${parseFloat(data.distance.toFixed(2))} ${data.unit}</p></div></div>`;
 		stats.innerHTML = statsContent;

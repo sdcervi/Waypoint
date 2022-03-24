@@ -22,7 +22,8 @@
 	<!-- Meta details to launch in full-screen if added as a homescreen app -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="mainfest" href="manifest.json">
+	<meta name="theme-color" content="#1C2A48">
+	<link rel="manifest" href="./manifest.json">
 	
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-7FXX8J9GTX"></script>
@@ -63,74 +64,80 @@
 <main class="flex-shrink-0">
 <div class="container">
 	
-	<p><a href="./dashboard.html">&larr;&nbsp;Back</a></p>
+	<div id="please-sign-in"></div>
 	
-	<h2 class="text-center">Edit challenge details</h2>
+	<section id="signed-in">
 	
-	<section class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 col-xxl-6 offset-xxl-3">
-	
-		<div class="mb-3 row">
-			<label for="challenge-name" class="col-form-label">Challenge name:<span class="form-required"> *</span></label>
-			<div><input type="text" class="form-control" name="challenge-name" id="challenge-edit-name" required /></div>
-		</div>
-		<div class="mb-3 row">
-			<label for="challenge-company" class="col-form-label">Company:<span class="form-required"> *</span></label>
-			<div><input type="text" class="form-control" name="challenge-company" id="challenge-edit-company" placeholder="Example: Virtual Running Challenges" required /></div>
-		</div>
-		<div class="mb-3 row">
-			<label for="challenge-distance" class="col-form-label">Distance goal:<span class="form-required"> *</span></label>
-			<div class="col-6"><input type="number" step="any" class="form-control" name="challenge-distance" id="challenge-edit-distance" required /></div>
-			<div class="col-6">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="distance-edit" value="miles" id="editMiles" checked>
-					<label class="form-check-label" for="editMiles">mi</label>
+		<p><a href="./dashboard.html">&larr;&nbsp;Back</a></p>
+
+		<h2 class="text-center">Edit challenge details</h2>
+
+		<section class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 col-xxl-6 offset-xxl-3">
+
+			<div class="mb-3 row">
+				<label for="challenge-name" class="col-form-label">Challenge name:<span class="form-required"> *</span></label>
+				<div><input type="text" class="form-control" name="challenge-name" id="challenge-edit-name" required /></div>
+			</div>
+			<div class="mb-3 row">
+				<label for="challenge-company" class="col-form-label">Company:<span class="form-required"> *</span></label>
+				<div><input type="text" class="form-control" name="challenge-company" id="challenge-edit-company" placeholder="Example: Virtual Running Challenges" required /></div>
+			</div>
+			<div class="mb-3 row">
+				<label for="challenge-distance" class="col-form-label">Distance goal:<span class="form-required"> *</span></label>
+				<div class="col-6"><input type="number" step="any" class="form-control" name="challenge-distance" id="challenge-edit-distance" required /></div>
+				<div class="col-6">
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="distance-edit" value="miles" id="editMiles" checked>
+						<label class="form-check-label" for="editMiles">mi</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="distance-edit" value="kilometers" id="editKilometers">
+						<label class="form-check-label" for="editKilometers">km</label>
+					</div>
 				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="distance-edit" value="kilometers" id="editKilometers">
-					<label class="form-check-label" for="editKilometers">km</label>
+			</div>
+			<div class="row">
+				<label for="challenge-progress" class="col-form-label">Current progress:<span class="form-required"> *</span></label>
+				<div><input type="number" step="any" class="form-control" name="challenge-progress" id="challenge-edit-progress" /></div>
+			</div>
+			<div class="mb-3 row">
+				<div class="form-check ps-5">
+					<input class="form-check-input" type="checkbox" name="is-complete" id="is-complete">
+					<label class="form-check-label" for="is-complete">I&rsquo;ve completed this challenge</label>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<label for="challenge-progress" class="col-form-label">Current progress:<span class="form-required"> *</span></label>
-			<div><input type="number" step="any" class="form-control" name="challenge-progress" id="challenge-edit-progress" /></div>
-		</div>
-		<div class="mb-3 row">
-			<div class="form-check ps-5">
-				<input class="form-check-input" type="checkbox" name="is-complete" id="is-complete">
-				<label class="form-check-label" for="is-complete">I&rsquo;ve completed this challenge</label>
+			<div class="mb-3 row">
+				<label for="challenge-period" class="col-form-label">Time period:</label>
+				<div class="input-group">
+					<input type="number" step="1" class="form-control" name="challenge-period" id="challenge-edit-period" />
+					<select class="form-select" aria-label="Default select example" id="challenge-edit-period-unit">
+						<option selected>Select unit</option>
+						<option value="day">days</option>
+						<option value="month">months</option>
+						<option value="year">years</option>
+					</select>
+				</div>
 			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="challenge-period" class="col-form-label">Time period:</label>
-			<div class="input-group">
-				<input type="number" step="1" class="form-control" name="challenge-period" id="challenge-edit-period" />
-				<select class="form-select" aria-label="Default select example" id="challenge-edit-period-unit">
-					<option selected>Select unit</option>
-					<option value="day">days</option>
-					<option value="month">months</option>
-					<option value="year">years</option>
-				</select>
+			<div class="mb-3 row">
+				<label for="challenge-start" class="col-form-label">Start date:<span class="form-required"> *</span></label>
+				<div><input type="date" class="form-control" name="challenge-start" id="challenge-edit-start" required/></div>
 			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="challenge-start" class="col-form-label">Start date:<span class="form-required"> *</span></label>
-			<div><input type="date" class="form-control" name="challenge-start" id="challenge-edit-start" required/></div>
-		</div>
-		<div class="row">
-			<div class="form-check ps-5 mb-3">
-				<input class="form-check-input" type="checkbox" name="has-milestones" id="hasMilestones" data-bs-toggle="collapse" href="#collapse-milestones" role="button" aria-expanded="false" aria-controls="collapseMilestones">
-				<label class="form-check-label" for="hasMilestones">This challenge has milestones</label>
+			<div class="row">
+				<div class="form-check ps-5 mb-3">
+					<input class="form-check-input" type="checkbox" name="has-milestones" id="hasMilestones" data-bs-toggle="collapse" href="#collapse-milestones" role="button" aria-expanded="false" aria-controls="collapseMilestones">
+					<label class="form-check-label" for="hasMilestones">This challenge has milestones</label>
+				</div>
 			</div>
-		</div>
-		<div class="collapse" id="collapse-milestones">
-			<button class="btn btn-outline-primary btn-sm milestones-add-button" type="button" onclick="addMilestone('milestones-edit-container')"><i class="bi bi-plus-lg"></i></button>
-			<div class="mb-3 row" id="milestones-edit-container"></div>
-		</div>
-		<p class="mb-0 mt-4 small float-end"><span class="form-required">* Required</span></p>
-		<a href="./dashboard.html"><button type="button" class="btn btn-secondary mt-3">Cancel</button></a>
-		<button type="button" class="btn btn-primary mt-3" id="edit-challenge-button" onclick="editChallenge()">Submit</button>
-	
+			<div class="collapse" id="collapse-milestones">
+				<button class="btn btn-outline-primary btn-sm milestones-add-button" type="button" onclick="addMilestone('milestones-edit-container')"><i class="bi bi-plus-lg"></i></button>
+				<div class="mb-3 row" id="milestones-edit-container"></div>
+			</div>
+			<p class="mb-0 mt-4 small float-end"><span class="form-required">* Required</span></p>
+			<a href="./dashboard.html"><button type="button" class="btn btn-secondary mt-3">Cancel</button></a>
+			<button type="button" class="btn btn-primary mt-3" id="edit-challenge-button" onclick="editChallenge()">Submit</button>
+
+		</section>
+		
 	</section>
 	
 </div>
@@ -138,7 +145,7 @@
 	
 <footer class="footer mt-auto" id="footer"></footer>
 	
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/header-footer.js"></script>

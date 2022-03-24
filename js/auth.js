@@ -42,7 +42,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 		getUserData(user);
 	} else {
 		document.getElementById('signin-button').style.display = 'inline-block';
-		document.getElementById('signout-button').style.display = 'none';
-		document.getElementById('user-settings').innerHTML = 'Please sign in to see your user profile.';
+		if (document.getElementById('signout-button')) {
+			document.getElementById('signout-button').style.display = 'none';
+		}
+		document.getElementById('please-sign-in').innerHTML = 'Please <a href="./signin.html">sign in</a> to see this page.';
+		document.getElementById('please-sign-in').style.marginTop = '10vh';
+		if (document.getElementById('signed-in')) {
+			document.getElementById('signed-in').style.display = 'none';
+		}
 	}
 });
