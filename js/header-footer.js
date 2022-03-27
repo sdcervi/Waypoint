@@ -11,6 +11,7 @@ primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-
 primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-dashboard" href="./dashboard.html">Dashboard</a></li>';
 primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-profile" href="./profile.html">Profile</a></li>';
 primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-about" href="./about.html">About</a></li>';
+primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-faq" href="./faq.html">FAQ</a></li>';
 primaryNavContents += '</ul></div>';
 primaryNavContents += '<a href="./signin.html"><button class="btn btn-sm signin" id="signin-button" type="button">Sign in</button></a>';
 primaryNavContents += '</div>';
