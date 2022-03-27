@@ -4,16 +4,21 @@ let primaryNavContents = "";
 
 primaryNavContents += '<div class="container-fluid">';
 primaryNavContents += '<a class="navbar-brand me-lg-4" href="#"><img src="assets/logo/logo-white.svg" alt="Waypoint" class="logo"/></a>';
-primaryNavContents += '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>';
-primaryNavContents += '<div class="collapse navbar-collapse" id="navbarSupportedContent">';
+primaryNavContents += '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>';
+primaryNavContents += '<div class="collapse navbar-collapse" id="navbarCollapse">';
 primaryNavContents += '<ul class="navbar-nav me-auto mt-2 mt-lg-0 mb-lg-0">';
 primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-index" href="./index.html">Home</a></li>';
-primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-dashboard" href="./dashboard.html">Dashboard</a></li>';
-primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-profile" href="./profile.html">Profile</a></li>';
 primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-about" href="./about.html">About</a></li>';
 primaryNavContents += '<li class="nav-item me-lg-2"><a class="nav-link" id="nav-faq" href="./faq.html">FAQ</a></li>';
 primaryNavContents += '</ul></div>';
-primaryNavContents += '<a href="./signin.html"><button class="btn btn-sm signin" id="signin-button" type="button">Sign in</button></a>';
+primaryNavContents += '<div class="dropdown" id="profileDropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-circle"></i><span id="profileUserNavbar"></span></button>';
+primaryNavContents += '<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">';
+primaryNavContents += '<li><a class="dropdown-item" href="./dashboard.html">Dashboard</a></li>';
+primaryNavContents += '<li><a class="dropdown-item" href="./profile.html">Profile</a></li>';
+primaryNavContents += '<li><hr class="dropdown-divider"></li>';
+primaryNavContents += '<li><a class="dropdown-item onclick="logout()" href="#">Sign out</a></li>';
+primaryNavContents += '</ul></div>';
+primaryNavContents += '<a href="./signin.html" id="signin-button"><button class="btn btn-sm signin" type="button">Sign in</button></a>';
 primaryNavContents += '</div>';
 
 primaryNav.innerHTML = primaryNavContents;

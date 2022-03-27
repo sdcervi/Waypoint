@@ -38,6 +38,8 @@ function logout () {
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		document.getElementById('signin-button').style.display = 'none';
+		document.getElementById('profileDropdown').style.display = 'block';
+		document.getElementById('profileUserNavbar').innerHTML = user.displayName;
 		currentUser = user;
 		getUserData(user);
 	} else {

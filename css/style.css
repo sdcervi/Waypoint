@@ -26,6 +26,10 @@ h1 { text-transform: uppercase; font-weight: 300; font-size: 2rem; }
 .navbar button.signin { color: white; background-color: #0099cc; border-color: #0099cc; position: absolute; right: 0.75rem; top: -0.15em; }
 .navbar button.signin:focus, .navbar button.signin:hover { background-color: #33b5e5; border-color: #33b5e5; }
 .navbar button.signin:active { background-color: #2bbbad; border-color: #2bbbad; }
+.navbar .dropdown { display: none; }
+.navbar .dropdown .dropdown-toggle { padding: 0.25rem 0.5rem; }
+.navbar .dropdown .dropdown-toggle i { margin-right: 0.75em; }
+.navbar .dropdown .dropdown-menu { border-top: 1px solid lightgray; }
 
 /* -------------------------------- COMPONENT STYLES --------------------------------- */
 #cookie-banner { position: fixed; bottom: 0; left: .75rem; width: 100%; z-index: 999; border-radius: 0; display: none; padding: 0.5em; font-size: 0.9em; align-items: center; }
