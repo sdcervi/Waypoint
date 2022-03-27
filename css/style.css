@@ -105,6 +105,11 @@ button.btn-edit { position: absolute; }
 .team-bio img { border-radius: 10%; max-width: 100px; height: auto; }
 .team-bio .bio-photo, .team-bio h3 { text-align: center; }
 
+#alsoAdd .form-check { padding: 0 calc(var(--bs-gutter-x) * .5); }
+#alsoAdd .form-check-input { margin-left: 0; margin-right: 0.75em; }
+#alsoAdd #selectAll { text-align: right; font-size: 0.8em; }
+#alsoAdd #selectAll .form-check-input { float: right; margin-left: 0.75em; margin-right: 0; }
+
 /* ---------------------------------- MEDIA QUERIES ---------------------------------- */
 @media (max-width: 400px) {
 	h2 { font-size: calc(1.2rem + .9vw); }
