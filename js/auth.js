@@ -1,9 +1,15 @@
+const db = firebase.firestore();
+
 // Get user data; if data does not exist, initialize
 function getUserData (user) {
 	const userData = db.collection('userData').doc(user.uid);
 	userData.get().then((doc) => {
         if (doc.exists) {
-			getProfileData (user);
+			if (document.location.pathname == '/add-challenge.html' || document.location.pathname == '/edit-challenge.html' || document.location.pathname == '/dashboard.html' || document.location.pathname == '/profile.html' ) {
+				getProfileData (user);
+			} else {
+				return;
+			}
 		} else {
 			userData.set({
 				sort: 'progress-desc',
@@ -37,20 +43,22 @@ function logout () {
 // Check whether the user is logged in
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		document.getElementById('signin-button').style.display = 'none';
+		document.getElementById('signin-button').remove();
 		document.getElementById('profileDropdown').style.display = 'block';
 		document.getElementById('profileUserNavbar').innerHTML = user.displayName;
-		currentUser = user;
 		getUserData(user);
 	} else {
-		document.getElementById('signin-button').style.display = 'inline-block';
+		document.getElementById('signin-button').firstElementChild.style.display = 'inline-block';
+		document.getElementById('profileDropdown').remove();
 		if (document.getElementById('signout-button')) {
-			document.getElementById('signout-button').style.display = 'none';
+			document.getElementById('signout-button').remove();
 		}
-		document.getElementById('please-sign-in').innerHTML = 'Please <a href="./signin.html">sign in</a> to see this page.';
-		document.getElementById('please-sign-in').style.marginTop = '10vh';
+		if (document.getElementById('please-sign-in')) {
+			document.getElementById('please-sign-in').innerHTML = 'Please <a href="./signin.html">sign in</a> to see this page.';
+			document.getElementById('please-sign-in').style.marginTop = '10vh';
+		}
 		if (document.getElementById('signed-in')) {
-			document.getElementById('signed-in').style.display = 'none';
+			document.getElementById('signed-in').remove();
 		}
 	}
 });

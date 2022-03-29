@@ -64,7 +64,7 @@
 	
 	<section id="welcome">
 		
-		<h1>Welcome to <br><img src="assets/logo/logo.svg" alt="Waypoint"></h1>
+		<h1>Welcome to <br><img src="assets/logo/logo.svg" alt="Waypoint" width="550" height="83"></h1>
 		
 		<p class="mt-4">A simple app for tracking progress toward distance-based exercise&nbsp;goals</p>
 		
@@ -75,9 +75,9 @@
 		<div class="px-4 my-5 text-center border-bottom">
 			<div class="overflow-hidden screenshot-container">
 				<div class="container px-5">
-					<img src="assets/screenshot-mbl.png" class="img-fluid border rounded-3 shadow-lg mb-4 mbl" alt="Screenshot">
-					<img src="assets/screenshot-tab.png" class="img-fluid border rounded-3 shadow-lg mb-4 tab" alt="Screenshot">
-					<img src="assets/screenshot.png" class="img-fluid border rounded-3 shadow-lg mb-4 dsk" alt="Screenshot">
+					<img src="assets/screenshot-mbl-1x.webp" srcset="assets/screenshot-mbl-1x.webp 1x, assets/screenshot-mbl-2x.webp 2x" class="img-fluid border rounded-3 shadow-lg mb-4 mbl" alt="Screenshot" width="372" height="722" id="screenshot-mbl">
+					<img src="assets/screenshot-tab-1x.webp" srcset="assets/screenshot-tab-1x.webp 1x, assets/screenshot-tab-2x.webp 2x" class="img-fluid border rounded-3 shadow-lg mb-4 tab" alt="Screenshot" width="550" height="503" id="screenshot-tab">
+					<img src="assets/screenshot-dsk-1x.webp" srcset="assets/screenshot-dsk-1x.webp 1x, assets/screenshot-dsk-2x.webp 2x" class="img-fluid border rounded-3 shadow-lg mb-4 dsk" alt="Screenshot" width="550" height="384" id="screenshot-dsk">
 				</div>
 			</div>
 		</div>
@@ -164,8 +164,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="service-worker.js"></script>
 <script type="text/javascript" src="js/header-footer.js"></script>
 <script defer type="text/javascript" src="js/auth.js"></script>
+	
+<script>
+	const width = document.documentElement.clientWidth;
+	const imgMbl = document.getElementById('screenshot-mbl');
+	const imgTab = document.getElementById('screenshot-tab');
+	const imgDsk = document.getElementById('screenshot-dsk');
+	if (width < 992) {
+		imgTab.remove();
+		imgDsk.remove();
+	} else if (width >= 992 && width < 1400) {
+		imgMbl.remove();
+		imgDsk.remove();
+	} else if (width >= 1400) {
+		imgMbl.remove();
+		imgTab.remove();
+	} else {
+		alert ('Error with responsive image selection.');
+	}
+</script>
 
 </body>
 </html>

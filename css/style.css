@@ -39,7 +39,6 @@ h1 { text-transform: uppercase; font-weight: 300; font-size: 2rem; }
 #welcome { text-align: center; }
 #welcome .screenshot-container { max-height: 45vh; }
 #welcome img { width: 100%; max-width: 550px; height: auto; }
-#welcome img.dsk, #welcome img.tab { display: none; }
 #welcome .feature-grid { padding: 2rem 2rem 0 2rem; }
 #welcome .feature-grid .feature-text { text-align: left; }
 #welcome .feature-grid .feature-text h3 { font-size: 1.25rem; margin-bottom: 0.25em; font-weight: bold; }
@@ -140,8 +139,6 @@ button.btn-edit { position: absolute; }
 	.navbar .nav-link { font-size: 1em; }
 	.navbar .nav-link.active { display: block; padding: 0.25rem 0.5rem; margin: 0; }
 	.team-bio .bio-photo { text-align: right; }
-	#welcome img.mbl { display: none; }
-	#welcome img.tab { display: inline; }
 	#welcome .container.px-5 { max-width: inherit; }
 	.navbar .dropdown .dropdown-toggle { position: static; }
 	.navbar .dropdown ul { position: absolute; right: 0; }
@@ -154,6 +151,4 @@ button.btn-edit { position: absolute; }
 @media (min-width: 1400px) {
 	.navbar#primary-nav>.container-fluid { max-width: 1320px; }
 	#welcome .screenshot-container { max-height: 30vh; }
-	#welcome img.tab { display: none; }
-	#welcome img.dsk { display: inline; }
 }
