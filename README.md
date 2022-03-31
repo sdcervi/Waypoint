@@ -5,6 +5,7 @@ Single-page web application created with JavaScript
 - [Summary](#summary)
 - [Technologies](#technologies)
 - [Features](#features)
+- [Currently in development](#currently-in-development)
 - [Use cases](#use-cases)
 - [Project status](#project-status)
 
@@ -26,8 +27,12 @@ I designed it to be used primarily on mobile devices, for a 375px-wide viewport 
 ### Features
 - Add new challenges
 - Edit existing challenge details
-- Add progress to a challenge incrementally
+- Add progress to a single challenge incrementally, or some/all active challenges incrementally
 - Delete existing challenges
+
+### Currently in development
+- Add to Homescreen pop-up capability
+- Reduce vulnerability to XSS attacks
 
 ### Use cases
 While popular distance challenge hosts such as The Conqueror Challenge or Pacer have their own apps that synchronize with fitness tracking systems (Apple, Garmin, Fitbit, etc), not all of them do.  Some challenge hosts ask you to submit proof of your distance and time for each challenge via their website, which can be cumbersome and tedious.  Some simply ship your medals after registration, and use the honor system.  Waypoint uses the honor system too, but in a way that puts ownership back in the user's hands.
