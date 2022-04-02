@@ -1,6 +1,6 @@
 // Set up primary nav contents and write them to the page
 const primaryNav = document.getElementById('primary-nav');
-let primaryNavContents = "";
+let primaryNavContents = '';
 
 primaryNavContents += '<div class="container-fluid">';
 primaryNavContents += '<a class="navbar-brand me-lg-4" href="./index.html"><img src="assets/logo/logo-white.svg" alt="Waypoint" class="logo" width="176" height="27" /></a>';
