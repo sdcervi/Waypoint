@@ -11,7 +11,6 @@ CONTENTS:
 */
 
 // Global variables for database and challenges
-const db = firebase.firestore();
 let challenges = {}; // Initialize challenges object to empty
 let milestoneCounter = 0; // Counter for number of milestones added, so that they each have a unique ID
 

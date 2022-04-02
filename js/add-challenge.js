@@ -11,7 +11,6 @@ CONTENTS:
 */
 
 // Global variables for database and challenges
-const db = firebase.firestore();
 let challenges = {}; // Initialize challenges object to empty
 
 // Adds a row for a new milestone when creating a new challenge
