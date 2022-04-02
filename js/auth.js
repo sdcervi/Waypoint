@@ -45,7 +45,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		document.getElementById('signin-button').remove();
 		document.getElementById('profileDropdown').style.display = 'block';
-		document.getElementById('profileUserNavbar').innerHTML = user.displayName;
+		document.getElementById('profileUserNavbar').textContent = user.displayName;
 		getUserData(user);
 	} else {
 		document.getElementById('signin-button').firstElementChild.style.display = 'inline-block';

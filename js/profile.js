@@ -1,31 +1,11 @@
-// Global variables for database and current user
-const db = firebase.firestore();
-
 // Fetch the database's profile data for the user and display it
 function getProfileData (user) {
 	// Fetch the user's data
 	const userData = db.collection('userData').doc(user.uid);
 	
-	// Display the user's high-res photo, if one exists
-	if (user.photoURL) {
-		let photoURL = user.photoURL;
-		user.providerData.forEach((profile) => {
-			const provider = profile.providerId;
-			switch (provider) {
-				case 'google.com':
-					photoURL = user.photoURL.replace('s96-c', 's300-c');
-					break;
-				default:
-					alert ('Error upscaling profile image.');
-			}
-		});
-		document.getElementById('profile-img').innerHTML = `<img src="${photoURL}" alt="Your profile picture" class="profile-img">`;
-	} else {
-		document.getElementById('profile-img').innerHTML = `<i class="bi bi-person-square default-profile-img"></i>`;
-	}
-	
 	// Display the user's name
-	document.getElementById('user-name').innerHTML = user.displayName + '<button type="button" class="btn btn-sm btn-link btn-edit" data-bs-toggle="modal" data-bs-target="#editDisplayNameModal"><i class="bi bi-pencil-square"></i></button>';
+	document.getElementById('user-name').textContent = user.displayName;
+	document.getElementById('user-name').innerHTML += '<button type="button" class="btn btn-sm btn-link btn-edit" data-bs-toggle="modal" data-bs-target="#editDisplayNameModal"><i class="bi bi-pencil-square"></i></button>';
 	
 	// Display the user's account details
 	const details = document.getElementById('user-details');
@@ -75,7 +55,7 @@ function getProfileData (user) {
 		settingsContent += `<div class="text-center"><button class="btn btn-primary" onclick="saveChanges()">Save changes</button></div>`;
 		settings.innerHTML = settingsContent;
 		
-		deleteDiv.innerHTML = '<hr><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete my account and data</button>';
+		deleteDiv.innerHTML = '<hr><button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete my account and data</button>';
 		
 		const sortMethods = settings.querySelectorAll('input[name="sort-by"]');
 		for (const sortMethod of sortMethods) {
@@ -191,15 +171,22 @@ function changeEmail () {
 		alert ('Please enter a new email address.');
 		return;
 	}
+
+	var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+	if (newEmail.match(validRegex)) {
+		const user = firebase.auth().currentUser;
 	
-	const user = firebase.auth().currentUser;
-	
-	user.updateEmail(newEmail).then(() => {
-		location.reload();
-	}).catch((error) => {
-		alert ('Please sign in again to continue.');
-		location.href = './signin.html';
-	});
+		user.updateEmail(newEmail).then(() => {
+			location.reload();
+		}).catch((error) => {
+			alert ('Please sign in again to continue.');
+			location.href = './signin.html';
+		});
+	} else {
+		alert('Please enter a valid email address.');
+		return;
+	}
 }
 
 function resetPassword () {
