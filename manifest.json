@@ -22,11 +22,6 @@
 			"sizes":	"512x512",
 			"type":		"image/png",
 			"purpose":	"maskable"
-		},
-		{
-			"src":		"/assets/favicon/favicon.svg",
-			"sizes":	"512x512",
-			"type":		"image/svg+xml"
 		}
 	],
 	"start_url":	"/dashboard.html",

@@ -16,8 +16,7 @@ function getUserData (user) {
 				unit: 'miles',
 				total_challenges: 0,
 				challenges: '',
-				completed: 0,
-				distance: 0
+				completed: 0
 			}).then(() => {
 				return;
 			}).catch((error) => {

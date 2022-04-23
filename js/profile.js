@@ -17,7 +17,7 @@ function getProfileData (user) {
 		const provider = profile.providerId;
 		switch (provider) {
 			case 'google.com':
-				detailsContent += '<img src="assets/providers/google.svg" class="provider" alt="Google">';
+				detailsContent += '<img src="assets/providers/google.svg" class="provider" alt="Google" width="24" height="24">';
 				break;
 			default:
 				alert ('Error getting linked accounts');
@@ -38,7 +38,6 @@ function getProfileData (user) {
 		let statsContent = `<h4>Statistics</h4>`;
 		statsContent += `<div class="row"><div class="col-6"><strong>Challenges in progress</strong></p></div><div class="col-6"><p>${data.total_challenges - data.completed}</p></div></div>`;
 		statsContent += `<div class="row"><div class="col-6"><strong>Challenges completed</strong></p></div><div class="col-6"><p>${data.completed}</p></div></div>`;
-		statsContent += `<div class="row"><div class="col-6"><strong>Distance tracked</strong></p></div><div class="col-6"><p>${parseFloat(data.distance.toFixed(2))} ${data.unit}</p></div></div>`;
 		stats.innerHTML = statsContent;
 		
 		let settingsContent = `<h4>Settings</h4>`;
