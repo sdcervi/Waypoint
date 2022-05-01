@@ -32,7 +32,7 @@ const uiConfig = {
 		firebase.auth.GoogleAuthProvider.PROVIDER_ID
 	],
 	// Terms of service url.
-	tosUrl: '<your-tos-url>',
+	tosUrl: './terms-of-service.html',
 	// Privacy policy url.
 	privacyPolicyUrl: './privacy-policy.html'
 };
