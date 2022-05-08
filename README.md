@@ -1,5 +1,5 @@
 # Waypoint: a web-based distance goal tracker
-Single-page web application created with JavaScript
+Web application created with JavaScript and Firebase
 
 ## Table of Contents
 - [Summary](#summary)
