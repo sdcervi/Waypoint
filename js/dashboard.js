@@ -4,7 +4,7 @@
 
 CONTENTS:
 	1. Global variables for database and current user, event listeners
-	2. writeCard ()			Generates each challenge's card from data stored in localStorage object, and writes it to the page
+	2. writeCard ()			Generates each challenge's card from data stored in firebase object, and writes it to the page
 	3. writeData ()			Writes the user's data to the page
 	3. getProfileData ()	Fetch the database's profile data for the user and display it
 */
